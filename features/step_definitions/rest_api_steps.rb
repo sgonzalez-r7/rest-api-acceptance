@@ -6,8 +6,8 @@ Given(/^the database has (.*?)$/) do |resource|
   @json_database = JSON.parse(File.read(data_dir + resource + '.json'))
 end
 
-When(/^the client requests GET (.*?)$/) do |path|
-  @response = http_with_headers.get(base_uri + path)
+And(/the client makes a GET request/) do
+  @response = http_with_headers.get(base_uri + @path)
 end
 
 Then(/^the status code is (#{AN_INTEGER})$/) do |code|
@@ -18,10 +18,10 @@ And(/the response is JSON/) do
   @json_response = JSON.parse @response.to_s
 end
 
-And(/it returns all workspaces in the database/) do
+And(/it returns all (.*?) in the database/) do |resource|
   expect(@json_response).to eql @json_database
 end
 
-And(/it returns workspace with id (#{AN_INTEGER})/) do |id|
-  expect(@json_response['id']).to eql id
+And(/it returns the correct (.*?) in the database/) do |resource|
+  expect(@json_response).to eql @json_database[@json_index]
 end

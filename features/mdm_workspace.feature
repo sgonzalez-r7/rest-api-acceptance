@@ -7,18 +7,22 @@ Feature: Mdm::Workspace REST API
   Background:
     Given the database has workspaces
 
-  Scenario: valid index request
-    When the client requests GET /workspaces
+  Scenario: Make a valid INDEX request
+    When the client determines the correct workspaces path
+    And  the client makes a GET request
     Then the status code is 200
     And  the response is JSON
     And  it returns all workspaces in the database
 
-  Scenario: valid show request
-    When the client requests GET /workspaces/3
+  Scenario: Make a valid SHOW request
+    When the client determines the correct workspace path
+    And  the client makes a GET request
     Then the status code is 200
     And  the response is JSON
-    And  it returns workspace with id 3
+    And  it returns the correct workspace in the database
 
-  Scenario: INVALID show request
-    When the client requests GET /workspaces/999
+
+  Scenario: INVALID SHOW request
+    When the client choses an invalid workspace
+    And  the client makes a GET request
     Then the status code is 404
