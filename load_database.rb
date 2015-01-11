@@ -1,23 +1,29 @@
 require 'builder'
 
-# Empty database
-::Mdm::User.delete_all
-::Mdm::Workspace.delete_all
-::Mdm::Host.delete_all
-::Mdm::Session.delete_all
-::Mdm::Note.delete_all
-::Mdm::Service.delete_all
-::Mdm::WebSite.delete_all
-::Mdm::WebForm.delete_all
-::Mdm::WebPage.delete_all
-::Mdm::WebVuln.delete_all
+def models
+  {
+    'user'      =>  ::Mdm::User,
+    'workspace' =>  ::Mdm::Workspace,
+    'host'      =>  ::Mdm::Host,
+    'session'   =>  ::Mdm::Session,
+    'note'      =>  ::Mdm::Note,
+    'serivce'   =>  ::Mdm::Service,
+    'web_site'  =>  ::Mdm::WebSite,
+    'web_form'  =>  ::Mdm::WebForm,
+    'web_page'  =>  ::Mdm::WebPage,
+    'web_vuln'  =>  ::Mdm::WebVuln,
 
-::SocialEngineering::Campaign.delete_all
-::SocialEngineering::WebPage.delete_all
-::SocialEngineering::Email.delete_all
-::SocialEngineering::EmailOpening.delete_all
-::SocialEngineering::PhishingResult.delete_all
-::SocialEngineering::Visit.delete_all
+    'se_campaign'        =>  ::SocialEngineering::Campaign,
+    'se_web_page'        =>  ::SocialEngineering::WebPage,
+    'se_email'           =>  ::SocialEngineering::Email,
+    'se_email_opening'   =>  ::SocialEngineering::EmailOpening,
+    'se_phishing_result' =>  ::SocialEngineering::PhishingResult,
+    'se_visit'           =>  ::SocialEngineering::Visit
+  }
+end
+
+# Empty database
+models.keys.each { |model| models[model].delete_all }
 
 
 # Mdm Main Objects
@@ -178,11 +184,23 @@ se_visits           = FactoryGirl.create_list :social_engineering_visit, 2,
                                               human_target_id: se_human_target.id
 
 
-# Create resource json files
-File.write('/Users/sgonzalez/rapid7/rest-api-acceptance/features/data/workspaces.json',
-           JSON.pretty_generate(JSON.parse(::Mdm::Workspace.all.to_json)))
+
+# Create database files for cucumber testing
+def write_data_to(dir)
+  key = FactoryGirl.create :api_key
+
+  models.keys.each do |model|
+    File.write( "#{dir}/" + "#{model}s" + '.json',
+                JSON.pretty_generate(JSON.parse(models[model].all.to_json)))
+
+    File.write( "#{dir}/" + "key" + '.json',
+                JSON.pretty_generate(JSON.parse(key.to_json)))
+  end
+end
 
 
-# Create api key
-key = FactoryGirl.create :api_key
-ap "token: #{key.token}"
+
+
+
+
+
