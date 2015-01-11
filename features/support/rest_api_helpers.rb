@@ -5,7 +5,14 @@ module RestApiHelpers
 
   def http_with_headers
     HTTP.with(accept: 'application/json',
-              'Token' => '2367595fa33d7a98a7f3393791490d0c')
+              'Token' => '75e3db94166b7d1f60994a41b573e6ad')
   end
 end
 World(RestApiHelpers)
+
+module FileHelpers
+  def data_dir
+    File.dirname(__FILE__) + '/../data/'
+  end
+end
+World(FileHelpers)

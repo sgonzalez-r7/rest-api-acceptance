@@ -178,6 +178,11 @@ se_visits           = FactoryGirl.create_list :social_engineering_visit, 2,
                                               human_target_id: se_human_target.id
 
 
+# Create resource json files
+File.write('/Users/sgonzalez/rapid7/rest-api-acceptance/features/data/workspaces.json',
+           JSON.pretty_generate(JSON.parse(::Mdm::Workspace.all.to_json)))
+
+
 # Create api key
 key = FactoryGirl.create :api_key
 ap "token: #{key.token}"
