@@ -21,5 +21,9 @@ module RestApiHelpers
   def http_with_headers
     HTTP.with(accept: 'application/json', 'Token' => token)
   end
+
+  def http_with_invalid_token
+    HTTP.with(accept: 'application/json', 'Token' => 'notavalidtoken')
+  end
 end
 World(RestApiHelpers)

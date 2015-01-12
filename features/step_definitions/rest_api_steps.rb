@@ -2,12 +2,20 @@ AN_INTEGER = Transform /^\d+$/ do |string|
   string.to_i
 end
 
+When(/the client generates the base path/) do
+  @path = '/base'
+end
+
 Given(/^the database has (.*?)$/) do |resource|
   @json_database = JSON.parse(File.read(data_dir + resource + '.json'))
 end
 
 And(/the client makes a GET request/) do
   @response = http_with_headers.get(base_uri + @path)
+end
+
+And(/the client uses an invalid token to ake a GET request/) do
+  @response = http_with_invalid_token.get(base_uri + @path)
 end
 
 Then(/^the status code is (#{AN_INTEGER})$/) do |code|
