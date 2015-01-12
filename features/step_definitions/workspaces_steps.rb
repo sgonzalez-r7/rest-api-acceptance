@@ -1,14 +1,17 @@
-When(/the client determines the correct (workspaces) path/) do |resource|
+When(/the client generates the (workspaces) path/) do |foo|
   @path = "/workspaces"
 end
 
-When(/the client determines the correct (workspace) path/) do |resource|
-  random_index = (0..@json_database.size-1).to_a.sample
-  @json_index  = random_index
-  json_id      = @json_database[@json_index]['id']
-  @path        = "/workspaces/#{json_id}"
+When(/the client uses a valid (workspace id)/) do |foo|
+  random_index  = (0..@json_database.size-1).to_a.sample
+  @json_index   = random_index
+  @workspace_id = @json_database[@json_index]['id']
 end
 
-When(/the client choses an invalid (workspace)/) do |resource|
-  @path = "/workspace/999"
+When(/the client uses an invalid (workspace id)/) do |foo|
+  @workspace_id = '999'
+end
+
+When(/the client generates the (workspace) path/) do |foo|
+  @path = "/workspaces/#{@workspace_id}"
 end
