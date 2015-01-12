@@ -185,6 +185,9 @@ se_visits           = FactoryGirl.create_list :social_engineering_visit, 2,
 
 
 
+# Other objects for checking scoping
+FactoryGirl.create_list :mdm_session, 2
+
 # Create database files for cucumber testing
 def write_data_to(dir)
   key = FactoryGirl.create :api_key
