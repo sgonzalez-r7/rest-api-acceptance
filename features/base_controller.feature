@@ -11,5 +11,5 @@ Feature: REST API Base Controller
 
   Scenario: invalid token
     When the client generates the base path
-    And  the client uses an invalid token to ake a GET request
+    And  the client uses an invalid token to make a GET request
     Then the status code is 403

@@ -14,7 +14,7 @@ And(/the client makes a GET request/) do
   @response = http_with_headers.get(base_uri + @path)
 end
 
-And(/the client uses an invalid token to ake a GET request/) do
+And(/the client uses an invalid token to make a GET request/) do
   @response = http_with_invalid_token.get(base_uri + @path)
 end
 
