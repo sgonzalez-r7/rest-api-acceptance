@@ -8,6 +8,7 @@ end
 
 Given(/^the database has (.*?)$/) do |resource|
   @json_database = JSON.parse(File.read(data_dir + resource + '.json'))
+  @json_database.sort! { |x,y| x['id'] <=> y['id']}  
 end
 
 And(/the client makes a GET request/) do
@@ -27,6 +28,7 @@ And(/the response is JSON/) do
 end
 
 And(/it returns all (.*?) in the database/) do |resource|
+  @json_response.sort! {|x,y| x['id'] <=> y['id']}
   expect(@json_response).to eql @json_database
 end
 
