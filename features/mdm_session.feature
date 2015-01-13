@@ -10,7 +10,7 @@ Feature: Mdm::Session REST API
   Scenario: Successful INDEX request
     Given a host that exists
     And   the host belongs to a workspace
-    When  client generates index path for sessions
+    When  the client generates index path for sessions
     And   the client makes a GET#index request
     Then  the status code is 200
     And   the response is JSON
