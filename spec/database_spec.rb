@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Database do
   let(:data_dir) { File.dirname(__FILE__) + '/' + '../features/support/data' }
 
-  describe '#new' do
+  describe '.new' do
     it 'captures all the model names' do
       database = Database.new data_dir: data_dir
 
