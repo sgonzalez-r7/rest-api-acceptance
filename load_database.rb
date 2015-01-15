@@ -1,5 +1,7 @@
 require 'builder'
 
+data_dir = '/Users/sgonzalez/rapid7/rest-api-acceptance/features/support/data'
+
 models = {
   'key'       =>  { 'class' => ::Mdm::ApiKey    },
   'owner'     =>  { 'class' => ::Mdm::User      },
@@ -485,8 +487,6 @@ other_data['se_visit']           += se_visit_others
 
 
 # Create database files for cucumber testing
-data_dir = '/Users/sgonzalez/rapid7/rest-api-acceptance/features/support/data'
-
 
 data.each_key do |model|
   File.write( "#{data_dir}/" + "#{model}" + '.json',
