@@ -1,0 +1,26 @@
+[
+  {
+    "address": "192.168.0.231",
+    "created_at": "2015-01-15T18:15:27Z",
+    "email_id": 232,
+    "human_target_id": 248,
+    "id": 116,
+    "updated_at": "2015-01-15T18:15:27Z"
+  },
+  {
+    "address": "192.168.0.233",
+    "created_at": "2015-01-15T18:15:27Z",
+    "email_id": 232,
+    "human_target_id": 248,
+    "id": 117,
+    "updated_at": "2015-01-15T18:15:27Z"
+  },
+  {
+    "address": "192.168.0.234",
+    "created_at": "2015-01-15T18:15:27Z",
+    "email_id": 232,
+    "human_target_id": 248,
+    "id": 118,
+    "updated_at": "2015-01-15T18:15:27Z"
+  }
+]

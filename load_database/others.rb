@@ -1,0 +1,25 @@
+others =
+  {
+    'key_other'       =>  { },
+    'owner_other'     =>  { },
+    'workspace_other' =>  { },
+    'host_other'      =>  { },
+    'session_other'   =>  { },
+    'serivce_other'   =>  { },
+    'note_other'      =>  { },
+    'vuln_other'      =>  { },
+    'web_site_other'  =>  { },
+    'web_form_other'  =>  { },
+    'web_page_other'  =>  { },
+    'web_vuln_other'  =>  { },
+
+    'se_campaign_other'        =>  { },
+    'se_web_page_other'        =>  { },
+    'se_target_list_other'     =>  { },
+    'se_email_template_other'  =>  { },
+    'se_email_other'           =>  { },
+    'se_human_target_other'    =>  { },
+    'se_email_opening_other'   =>  { },
+    'se_phishing_result_other' =>  { },
+    'se_visit_other'           =>  { },
+  }

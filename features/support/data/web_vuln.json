@@ -1,0 +1,83 @@
+[
+  {
+    "blame": null,
+    "category_id": 129,
+    "confidence": 15,
+    "created_at": "2015-01-15T18:15:27Z",
+    "description": null,
+    "id": 116,
+    "legacy_category": null,
+    "method": "POST",
+    "name": "Web Vulnerability 116",
+    "owner": null,
+    "params": [
+      [
+        "param116",
+        "value116"
+      ]
+    ],
+    "path": "path/to/vulnerability/116",
+    "payload": null,
+    "pname": "param116",
+    "query": null,
+    "request": null,
+    "request_id": null,
+    "risk": 2,
+    "updated_at": "2015-01-15T18:15:27Z",
+    "web_site_id": 116
+  },
+  {
+    "blame": null,
+    "category_id": 130,
+    "confidence": 16,
+    "created_at": "2015-01-15T18:15:27Z",
+    "description": null,
+    "id": 117,
+    "legacy_category": null,
+    "method": "GET",
+    "name": "Web Vulnerability 117",
+    "owner": null,
+    "params": [
+      [
+        "param117",
+        "value117"
+      ]
+    ],
+    "path": "path/to/vulnerability/117",
+    "payload": null,
+    "pname": "param117",
+    "query": null,
+    "request": null,
+    "request_id": null,
+    "risk": 3,
+    "updated_at": "2015-01-15T18:15:27Z",
+    "web_site_id": 116
+  },
+  {
+    "blame": null,
+    "category_id": 131,
+    "confidence": 17,
+    "created_at": "2015-01-15T18:15:27Z",
+    "description": null,
+    "id": 118,
+    "legacy_category": null,
+    "method": "PATH",
+    "name": "Web Vulnerability 118",
+    "owner": null,
+    "params": [
+      [
+        "param118",
+        "value118"
+      ]
+    ],
+    "path": "path/to/vulnerability/118",
+    "payload": null,
+    "pname": "param118",
+    "query": null,
+    "request": null,
+    "request_id": null,
+    "risk": 4,
+    "updated_at": "2015-01-15T18:15:27Z",
+    "web_site_id": 116
+  }
+]

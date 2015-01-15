@@ -1,3 +1,5 @@
+require 'set'
+require 'awesome_print'
 require 'client'
 require 'database'
 require 'rest_api'

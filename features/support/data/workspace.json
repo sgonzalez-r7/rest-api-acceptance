@@ -1,0 +1,32 @@
+[
+  {
+    "boundary": "192.168.0.231",
+    "created_at": "2015-01-15T18:15:26Z",
+    "description": "Mdm::Workspace description 116",
+    "id": 117,
+    "limit_to_network": false,
+    "name": "Mdm::Workspace Name 116",
+    "owner_id": 44,
+    "updated_at": "2015-01-15T18:15:26Z"
+  },
+  {
+    "boundary": "192.168.0.233",
+    "created_at": "2015-01-15T18:15:27Z",
+    "description": "Mdm::Workspace description 117",
+    "id": 118,
+    "limit_to_network": false,
+    "name": "Mdm::Workspace Name 117",
+    "owner_id": 44,
+    "updated_at": "2015-01-15T18:15:27Z"
+  },
+  {
+    "boundary": "192.168.0.234",
+    "created_at": "2015-01-15T18:15:27Z",
+    "description": "Mdm::Workspace description 118",
+    "id": 119,
+    "limit_to_network": false,
+    "name": "Mdm::Workspace Name 118",
+    "owner_id": 44,
+    "updated_at": "2015-01-15T18:15:27Z"
+  }
+]
