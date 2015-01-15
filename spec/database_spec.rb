@@ -1,42 +1,85 @@
 require 'spec_helper'
 
 describe Database do
-  let(:data_dir) { File.dirname(__FILE__) + '/' + '../features/data' }
+  let(:data_dir) { File.dirname(__FILE__) + '/' + '../features/support/data' }
 
-  describe '#read_data' do
-    it 'captures all the models' do
-      database = Database.new
-      database.read_data(data_dir: data_dir)
-      valid_model_names = Set.new %w[ host         se_email_opening
-                                      key          se_email
-                                      note         se_phishing_result
-                                      se_campaign  se_visit
-                                      se_web_page  web_form
-                                      serivce      web_page
-                                      session      web_site
-                                      user         web_vuln
-                                      workspace ]
+  describe '#new' do
+    it 'captures all the model names' do
+      database = Database.new data_dir: data_dir
 
-      expect(Set.new database.models).to eql valid_model_names
+      database_models      = Set.new database.models
+      model_files          = Dir[data_dir + '/*.json']
+      model_file_basenames = Set.new model_files.map { |file| File.basename(file, '.json') }
+
+      expect(database_models).to eql model_file_basenames
     end
 
-    it 'excludes models' do
-      database = Database.new
-      database.read_data(data_dir: data_dir, exclude: %w[key])
-      valid_model_names = Set.new %w[ host         se_email_opening
-                                      workspace    se_email
-                                      note         se_phishing_result
-                                      se_campaign  se_visit
-                                      se_web_page  web_form
-                                      serivce      web_page
-                                      session      web_site
-                                      user         web_vuln ]
+    it 'it loads model data into memory' do
+      database = Database.new data_dir: data_dir
 
-      expect(Set.new database.models).to eql valid_model_names
+      expect(database.data).not_to be_empty
     end
   end
 
-  # describe '#get_data' do
-  #   it 'fetches the data'
-  # end
+  describe '#load_data' do
+    it 'captures all the model names' do
+      database = Database.new
+      database.load_data data_dir: data_dir
+
+      database_models      = Set.new database.models
+      model_files          = Dir[data_dir + '/*.json']
+      model_file_basenames = Set.new model_files.map { |file| File.basename(file, '.json') }
+
+      expect(database_models).to eql model_file_basenames
+    end
+
+    it 'it loads model data into memory' do
+      database = Database.new
+      database.load_data data_dir: data_dir
+
+      expect(database.data).not_to be_empty
+    end
+  end
+
+  describe '#fetch_data_for' do
+    it 'fetches all the data for a model' do
+      database  = Database.new data_dir: data_dir
+      data      = database.fetch_data_for'workspace'
+
+      file      = data_dir + '/' + 'workspace.json'
+      file_data = JSON.parse File.read(file)
+
+      expect(data).to eql file_data
+    end
+
+    it 'fetches all the data by attribute for a model' do
+      database  = Database.new data_dir: data_dir
+      data      = database.fetch_data_for 'workspace', id: 118
+
+      file      = data_dir + '/' + 'workspace.json'
+      file_data = JSON.parse File.read(file)
+      obj_118   = file_data.select { |obj| obj['id'] == 118 }
+
+      ap obj_118
+
+      expect(data).to eql obj_118
+    end
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 end

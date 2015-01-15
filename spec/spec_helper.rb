@@ -1,4 +1,5 @@
 require 'set'
+require 'json'
 require 'awesome_print'
 require 'client'
 require 'database'
