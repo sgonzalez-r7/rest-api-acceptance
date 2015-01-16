@@ -1,3 +1,6 @@
 require 'json'
-require 'http'
 require 'awesome_print'
+require 'database'
+require 'client'
+require 'rest_api'
+require 'active_support/core_ext/string'
