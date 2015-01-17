@@ -4,8 +4,15 @@ class  Database
     File.dirname(__FILE__) + '/../../features/support/data'
   end
 
-  def self.fetch_data_for(model)
-    data[model]
+  def self.fetch_data_for(model, params={})
+    if params.empty?
+      results = data[model]
+    else
+      params.each do |k,v|
+        results = data[model].select { |model| model[k.to_s] == v }
+      end
+    end
+    results
   end
 
   private

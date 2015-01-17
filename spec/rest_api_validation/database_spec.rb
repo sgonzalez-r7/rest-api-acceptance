@@ -11,9 +11,19 @@ describe Database do
   end
 
   describe '.fetch_data_for' do
-    it 'returns requested data' do
-      workspace = JSON.parse File.read(data_dir + '/workspace.json')
-      expect(Database.fetch_data_for('workspace')).to eql workspace
+    context 'no param' do
+      it 'returns all data for a model' do
+        workspace = JSON.parse File.read(data_dir + '/workspace.json')
+        expect(Database.fetch_data_for('workspace')).to eql workspace
+      end
+    end
+
+    context 'with id param' do
+      it 'returns data for model with id param' do
+        workspace = JSON.parse File.read(data_dir + '/workspace.json')
+        workspace_118 = workspace.select { |ws| ws['id'] == 118 }
+        expect(Database.fetch_data_for('workspace', id: 118)).to eql workspace_118
+      end
     end
   end
 
