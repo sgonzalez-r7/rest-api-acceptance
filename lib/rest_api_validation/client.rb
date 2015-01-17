@@ -2,6 +2,12 @@ require 'http'
 
 module RestApiValidation
 class  Client
+  attr_reader :rest_api
+
+  def initialize(rest_api:)
+    @rest_api = rest_api
+  end
+
   def generate_index_path(options={})
     path = [nil]
     options.each_key do |key|
@@ -22,6 +28,8 @@ class  Client
   end
 
   def make_get_request(path)
+    key      = rest_api.key
+    base_uri = rest_api.base_uri
     HTTP.with(accept: 'application/json',
                       'Token' => key).get(base_uri + path)
   end

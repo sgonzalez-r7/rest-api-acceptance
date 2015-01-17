@@ -4,7 +4,7 @@ module RestApiValidation
 describe Client do
   describe '#make_get_request' do
     it 'makes a get request to rest api' do
-      client = Client.new
+      client = Client.new rest_api: RestApi
       response = client.make_get_request('/base')
       expect(response.code).to eql 200
     end
