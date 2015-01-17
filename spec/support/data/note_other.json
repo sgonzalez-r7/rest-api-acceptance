@@ -1,0 +1,41 @@
+[
+  {
+    "created_at": "2015-01-15T18:15:27Z",
+    "critical": null,
+    "data": {
+    },
+    "host_id": 119,
+    "id": 119,
+    "ntype": null,
+    "seen": null,
+    "service_id": 119,
+    "updated_at": "2015-01-15T18:15:27Z",
+    "workspace_id": 120
+  },
+  {
+    "created_at": "2015-01-15T18:15:28Z",
+    "critical": null,
+    "data": {
+    },
+    "host_id": 119,
+    "id": 120,
+    "ntype": null,
+    "seen": null,
+    "service_id": 119,
+    "updated_at": "2015-01-15T18:15:28Z",
+    "workspace_id": 120
+  },
+  {
+    "created_at": "2015-01-15T18:15:28Z",
+    "critical": null,
+    "data": {
+    },
+    "host_id": 119,
+    "id": 121,
+    "ntype": null,
+    "seen": null,
+    "service_id": 119,
+    "updated_at": "2015-01-15T18:15:28Z",
+    "workspace_id": 120
+  }
+]

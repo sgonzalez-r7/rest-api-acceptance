@@ -2,7 +2,7 @@ require 'spec_helper'
 
 module RestApiValidation
 describe Database do
-  let(:data_dir) { File.dirname(__FILE__) + '/../../features/support/data' }
+  let(:data_dir) { File.dirname(__FILE__) + '/../support/data' }
 
   describe '.data_dir' do
     it 'returns its data source dir' do

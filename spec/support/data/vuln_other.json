@@ -1,0 +1,41 @@
+[
+  {
+    "created_at": "2015-01-15T18:15:27Z",
+    "exploited_at": null,
+    "host_id": 119,
+    "id": 119,
+    "info": null,
+    "name": "Mdm::Vuln#name 119",
+    "nexpose_data_vuln_def_id": null,
+    "service_id": 119,
+    "updated_at": "2015-01-15T18:15:27Z",
+    "vuln_attempt_count": 0,
+    "vuln_detail_count": 0
+  },
+  {
+    "created_at": "2015-01-15T18:15:28Z",
+    "exploited_at": null,
+    "host_id": 119,
+    "id": 120,
+    "info": null,
+    "name": "Mdm::Vuln#name 120",
+    "nexpose_data_vuln_def_id": null,
+    "service_id": 119,
+    "updated_at": "2015-01-15T18:15:28Z",
+    "vuln_attempt_count": 0,
+    "vuln_detail_count": 0
+  },
+  {
+    "created_at": "2015-01-15T18:15:28Z",
+    "exploited_at": null,
+    "host_id": 119,
+    "id": 121,
+    "info": null,
+    "name": "Mdm::Vuln#name 121",
+    "nexpose_data_vuln_def_id": null,
+    "service_id": 119,
+    "updated_at": "2015-01-15T18:15:28Z",
+    "vuln_attempt_count": 0,
+    "vuln_detail_count": 0
+  }
+]
