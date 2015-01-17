@@ -1,4 +1,7 @@
-class Client
+require 'http'
+
+module RestApiValidation
+class  Client
   def generate_index_path(options={})
     path = [nil]
     options.each_key do |key|
@@ -18,9 +21,15 @@ class Client
     path.join('/')
   end
 
+  def make_get_request(path)
+    HTTP.with(accept: 'application/json',
+                      'Token' => key).get(base_uri + path)
+  end
+
   private
 
   def normalize_key(key)
     key.to_s.gsub /_id/, 's'
   end
+end
 end
