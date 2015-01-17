@@ -1,33 +1,28 @@
-class Database
-  attr_reader :models, :data
-
-  def initialize(data_dir: '')
-    load_data(data_dir: data_dir) unless data_dir.empty?
+module RestApiValidation
+class  Database
+  def self.data_dir
+    File.dirname(__FILE__) + '/../../features/support/data'
   end
 
-  def load_data(data_dir:)
-    files = Dir["#{data_dir}/*"]
-    @models = []
-    @data   = {}
+  def self.fetch_data_for(model)
+    data[model]
+  end
 
-    files.map do |file|
-      model_name         = File.basename(file, '.json')
-      model_data         = JSON.parse File.read(file)
-      @models           << model_name
-      @data[model_name]  = model_data
+  private
+
+  def self.data
+    @data || read_data
+  end
+
+  def self.read_data
+    files = Dir[data_dir + '/*.json']
+    @data = {}
+    files.each do |file|
+      model_name = File.basename file, '.json'
+      @data[model_name] = JSON.parse File.read(file)
     end
+    @data
   end
 
-  def fetch_data_for(model, options={})
-    key   = options.keys.first
-    value = options[key]
-
-    if options.empty?
-      data[model]
-    else
-      data[model].select { |obj| obj[key.to_s] == value }
-    end
-
-  end
-
+end
 end
