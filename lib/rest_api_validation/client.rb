@@ -8,36 +8,34 @@ class  Client
     @rest_api = rest_api
   end
 
-  def generate_index_path(options={})
-    path = [nil]
-    options.each_key do |key|
-      path << normalize_key(key) unless key == :resource
-      path << options[key]
-    end
-    path.join('/')
-  end
 
-
-  def generate_show_path(options={})
-    path = [nil]
-    options.each_key do |key|
-      path << normalize_key(key)
-      path << options[key]
-    end
-    path.join('/')
-  end
-
-  def make_get_request(path)
+  def make_get_request(action, resource, params={})
     key      = rest_api.key
     base_uri = rest_api.base_uri
+    path     = generate_path_for(action, resource, params)
+
     HTTP.with(accept: 'application/json',
                       'Token' => key).get(base_uri + path)
   end
 
+  def generate_path_for(action, resource, params={})
+    path_template(params)[action][resource]
+  end
+
   private
 
-  def normalize_key(key)
-    key.to_s.gsub /_id/, 's'
+  def path_template(params={})
+    {
+      index: {
+        'workspaces' => "/workspaces",
+        'hosts'      => "/workspaces/#{params[:workspace_id]}/hosts"
+      },
+      show: {
+        'workspace'  => "/workspaces/#{params[:id]}",
+        'host'       => "/workspaces/#{params[:workspace_id]}/hosts/#{params[:id]}"
+      },
+    }
   end
+
 end
 end
