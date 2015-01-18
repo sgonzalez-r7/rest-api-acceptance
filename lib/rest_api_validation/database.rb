@@ -8,9 +8,8 @@ class  Database
     if params.empty?
       results = data[model]
     else
-      params.each do |k,v|
-        results = data[model].select { |model| model[k.to_s] == v }
-      end
+      k, v    = params.shift
+      results = data[model].select { |model| model[k.to_s] == v }
     end
     results
   end
@@ -18,17 +17,17 @@ class  Database
   private
 
   def self.data
-    @data || read_data
+    @data ||= read_data
   end
 
   def self.read_data
     files = Dir[data_dir + '/*.json']
-    @data = {}
+    data = {}
     files.each do |file|
-      model_name = File.basename file, '.json'
-      @data[model_name] = JSON.parse File.read(file)
+      model_name        = File.basename file, '.json'
+      data[model_name] = JSON.parse File.read(file)
     end
-    @data
+    data
   end
 
 end
