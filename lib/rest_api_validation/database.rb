@@ -1,5 +1,5 @@
 module RestApiValidation
-class  Database
+module  Database
   def self.data_dir
     File.dirname(__FILE__) + '/../../features/support/data'
   end
