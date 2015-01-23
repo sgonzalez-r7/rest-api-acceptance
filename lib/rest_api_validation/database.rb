@@ -1,31 +1,34 @@
 module RestApiValidation
-module  Database
-  def self.data_dir
-    File.dirname(__FILE__) + '/../../features/support/data'
+class  Database
+  attr_reader :data_dir, :data
+
+  def initialize(data_dir:)
+    @data_dir = data_dir
   end
 
-  def self.fetch_data_for(model, params={})
+  def fetch_data_for(model, params={})
+    model_name = model.singularize
     if params.empty?
-      results = data[model]
+      results = data[model_name]
     else
-      k, v    = params.shift
-      results = data[model].select { |model| model[k.to_s] == v }
+      param, value = params.shift
+      results      = data[model_name].select { |e| e[param.to_s] == value }
     end
     results
   end
 
-  private
-
-  def self.data
+  def data
     @data ||= read_data
   end
 
-  def self.read_data
-    files = Dir[data_dir + '/*.json']
+  private
+
+  def read_data
     data = {}
+    files = Dir["#{data_dir}/*.json"]
     files.each do |file|
-      model_name        = File.basename file, '.json'
-      data[model_name] = JSON.parse File.read(file)
+      model =File.basename(file, '.json')
+      data[model] = JSON.parse File.read(file)
     end
     data
   end
