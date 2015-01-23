@@ -1,10 +1,12 @@
-Given(/^a (\S+) that has (\S+)$/) do |parent, children|
-  client.find_parent_with_children(parent, children)
+
+Given(/^a tester finds and notes a (\S+) that has (\S+)$/) do |parent, children|
+  tester.find_and_note_parent_with_children(parent, children)
 end
 
-Given(/^the (\S+) belongs to a (\S+)$/) do |child, parent|
- client.find_child_of_parent(child, parent)
+Given(/^the noted (\S+) belongs to a (\S+)$/) do |child, parent|
+  tester.in_notes_find_parent_of_child(parent, child)
 end
+
 
 When(/^the client generates the index path for sessions$/) do
   client.generate_index_path

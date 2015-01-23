@@ -1,32 +1,32 @@
 [
   {
-    "boundary": "192.168.0.231",
-    "created_at": "2015-01-15T18:15:26Z",
-    "description": "Mdm::Workspace description 116",
-    "id": 117,
+    "boundary": "192.168.0.1",
+    "created_at": "2015-01-20T18:47:18Z",
+    "description": "Mdm::Workspace description 1",
+    "id": 2,
     "limit_to_network": false,
-    "name": "Mdm::Workspace Name 116",
-    "owner_id": 44,
-    "updated_at": "2015-01-15T18:15:26Z"
+    "name": "Mdm::Workspace Name 1",
+    "owner_id": 1,
+    "updated_at": "2015-01-20T18:47:18Z"
   },
   {
-    "boundary": "192.168.0.233",
-    "created_at": "2015-01-15T18:15:27Z",
-    "description": "Mdm::Workspace description 117",
-    "id": 118,
+    "boundary": "192.168.0.3",
+    "created_at": "2015-01-20T18:47:19Z",
+    "description": "Mdm::Workspace description 2",
+    "id": 3,
     "limit_to_network": false,
-    "name": "Mdm::Workspace Name 117",
-    "owner_id": 44,
-    "updated_at": "2015-01-15T18:15:27Z"
+    "name": "Mdm::Workspace Name 2",
+    "owner_id": 1,
+    "updated_at": "2015-01-20T18:47:19Z"
   },
   {
-    "boundary": "192.168.0.234",
-    "created_at": "2015-01-15T18:15:27Z",
-    "description": "Mdm::Workspace description 118",
-    "id": 119,
+    "boundary": "192.168.0.4",
+    "created_at": "2015-01-20T18:47:19Z",
+    "description": "Mdm::Workspace description 3",
+    "id": 4,
     "limit_to_network": false,
-    "name": "Mdm::Workspace Name 118",
-    "owner_id": 44,
-    "updated_at": "2015-01-15T18:15:27Z"
+    "name": "Mdm::Workspace Name 3",
+    "owner_id": 1,
+    "updated_at": "2015-01-20T18:47:19Z"
   }
 ]

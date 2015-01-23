@@ -16,11 +16,14 @@ class  Tester
     parent_id
   end
 
-  private
-
   def note(params)
     k, v = params.shift
     @notes[k] = v
   end
+
+  def notes(param)
+    @notes[param]
+  end
+
 end
 end

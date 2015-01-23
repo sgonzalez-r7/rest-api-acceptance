@@ -1,10 +1,10 @@
 [
   {
     "config_type": "wizard",
-    "created_at": "2015-01-15T18:15:27Z",
-    "id": 116,
+    "created_at": "2015-01-20T18:47:19Z",
+    "id": 1,
     "last_target_interaction_at": null,
-    "name": "Name1523",
+    "name": "Name3",
     "notification_email_address": null,
     "notification_email_message": null,
     "notification_email_subject": null,
@@ -23,18 +23,18 @@
       "smtp_config_saved": true
     },
     "started_at": null,
-    "started_by_user_id": 44,
+    "started_by_user_id": 1,
     "state": "launchable",
-    "updated_at": "2015-01-15T18:15:27Z",
-    "user_id": 44,
-    "workspace_id": 117
+    "updated_at": "2015-01-20T18:47:19Z",
+    "user_id": 1,
+    "workspace_id": 2
   },
   {
     "config_type": "wizard",
-    "created_at": "2015-01-15T18:15:27Z",
-    "id": 117,
+    "created_at": "2015-01-20T18:47:19Z",
+    "id": 2,
     "last_target_interaction_at": null,
-    "name": "Name1536",
+    "name": "Name16",
     "notification_email_address": null,
     "notification_email_message": null,
     "notification_email_subject": null,
@@ -53,18 +53,18 @@
       "smtp_config_saved": true
     },
     "started_at": null,
-    "started_by_user_id": 44,
+    "started_by_user_id": 1,
     "state": "launchable",
-    "updated_at": "2015-01-15T18:15:27Z",
-    "user_id": 44,
-    "workspace_id": 117
+    "updated_at": "2015-01-20T18:47:19Z",
+    "user_id": 1,
+    "workspace_id": 2
   },
   {
     "config_type": "wizard",
-    "created_at": "2015-01-15T18:15:27Z",
-    "id": 118,
+    "created_at": "2015-01-20T18:47:19Z",
+    "id": 3,
     "last_target_interaction_at": null,
-    "name": "Name1541",
+    "name": "Name21",
     "notification_email_address": null,
     "notification_email_message": null,
     "notification_email_subject": null,
@@ -83,10 +83,10 @@
       "smtp_config_saved": true
     },
     "started_at": null,
-    "started_by_user_id": 44,
+    "started_by_user_id": 1,
     "state": "launchable",
-    "updated_at": "2015-01-15T18:15:27Z",
-    "user_id": 44,
-    "workspace_id": 117
+    "updated_at": "2015-01-20T18:47:19Z",
+    "user_id": 1,
+    "workspace_id": 2
   }
 ]

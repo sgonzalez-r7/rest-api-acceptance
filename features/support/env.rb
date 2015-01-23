@@ -1,6 +1,4 @@
 require 'json'
 require 'awesome_print'
-require 'database'
-require 'client'
-require 'rest_api'
+require 'rest_api_validation'
 require 'active_support/core_ext/string'
