@@ -8,18 +8,21 @@ class  Client
     @rest_api = rest_api
   end
 
-
   def make_get_request(action, resource, params={})
     key      = rest_api.key
     base_uri = rest_api.base_uri
     path     = generate_path_for(action, resource, params)
 
-    HTTP.with(accept: 'application/json',
-                      'Token' => key).get(base_uri + path)
+    @response = HTTP.with(accept: 'application/json',
+                          'Token' => key).get(base_uri + path)
   end
 
   def generate_path_for(action, resource, params={})
     path_template(params)[action][resource]
+  end
+
+  def last_response
+    @response
   end
 
   private
@@ -47,23 +50,23 @@ class  Client
       },
 
       show: {
-        'workspace' => "/workspaces/#{params[:id]}",
-        'host'      => "/workspaces/#{params[:workspace_id]}/hosts/#{params[:id]}",
-        'session'   => "/workspaces/#{params[:workspace_id]}/hosts/#{params[:host_id]}/sessions/#{params[:id]}",
-        'note'      => "/workspaces/#{params[:workspace_id]}/hosts/#{params[:host_id]}/notes/#{params[:id]}",
-        'service'   => "/workspaces/#{params[:workspace_id]}/hosts/#{params[:host_id]}/services/#{params[:id]}",
-        'vuln'      => "/workspaces/#{params[:workspace_id]}/hosts/#{params[:host_id]}/services/#{params[:service_id]}/vulns/#{params[:id]}",
-        'web_site'  => "/workspaces/#{params[:workspace_id]}/hosts/#{params[:host_id]}/services/#{params[:service_id]}/web_sites/#{params[:id]}",
-        'web_form'  => "/workspaces/#{params[:workspace_id]}/hosts/#{params[:host_id]}/services/#{params[:service_id]}/web_sites/#{params[:web_site]}/web_forms/#{params[:id]}",
-        'web_page'  => "/workspaces/#{params[:workspace_id]}/hosts/#{params[:host_id]}/services/#{params[:service_id]}/web_sites/#{params[:web_site]}/web_pages/#{params[:id]}",
-        'web_vuln'  => "/workspaces/#{params[:workspace_id]}/hosts/#{params[:host_id]}/services/#{params[:service_id]}/web_sites/#{params[:web_site]}/web_vulns/#{params[:id]}",
+        'workspace' => "/workspaces/#{params[:workspace_id]}",
+        'host'      => "/workspaces/#{params[:workspace_id]}/hosts/#{params[:host_id]}",
+        'session'   => "/workspaces/#{params[:workspace_id]}/hosts/#{params[:host_id]}/sessions/#{params[:session_id]}",
+        'note'      => "/workspaces/#{params[:workspace_id]}/hosts/#{params[:host_id]}/notes/#{params[:note_id]}",
+        'service'   => "/workspaces/#{params[:workspace_id]}/hosts/#{params[:host_id]}/services/#{params[:service_id]}",
+        'vuln'      => "/workspaces/#{params[:workspace_id]}/hosts/#{params[:host_id]}/services/#{params[:service_id]}/vulns/#{params[:vlun_id]}",
+        'web_site'  => "/workspaces/#{params[:workspace_id]}/hosts/#{params[:host_id]}/services/#{params[:service_id]}/web_sites/#{params[:web_site_id]}",
+        'web_form'  => "/workspaces/#{params[:workspace_id]}/hosts/#{params[:host_id]}/services/#{params[:service_id]}/web_sites/#{params[:web_site]}/web_forms/#{params[:web_form_id]}",
+        'web_page'  => "/workspaces/#{params[:workspace_id]}/hosts/#{params[:host_id]}/services/#{params[:service_id]}/web_sites/#{params[:web_site]}/web_pages/#{params[:web_page_id]}",
+        'web_vuln'  => "/workspaces/#{params[:workspace_id]}/hosts/#{params[:host_id]}/services/#{params[:service_id]}/web_sites/#{params[:web_site]}/web_vulns/#{params[:web_vuln_id]}",
 
-        'se_campaign'        => "/workspaces/#{params[:workspace_id]}/campaigns/#{params[:id]}",
-        'se_web_page'        => "/workspaces/#{params[:workspace_id]}/campaigns/#{params[:se_campaign_id]}/web_pages/#{params[:id]}",
-        'se_email'           => "/workspaces/#{params[:workspace_id]}/campaigns/#{params[:se_campaign_id]}/emails/#{params[:id]}",
-        'se_email_opening'   => "/workspaces/#{params[:workspace_id]}/campaigns/#{params[:se_campaign_id]}/email_openings/#{params[:id]}",
-        'se_phishing_result' => "/workspaces/#{params[:workspace_id]}/campaigns/#{params[:se_campaign_id]}/phishing_results/#{params[:id]}",
-        'se_visit'           => "/workspaces/#{params[:workspace_id]}/campaigns/#{params[:se_campaign_id]}/visits/#{params[:id]}",
+        'se_campaign'        => "/workspaces/#{params[:workspace_id]}/campaigns/#{params[:se_campaign_id]}",
+        'se_web_page'        => "/workspaces/#{params[:workspace_id]}/campaigns/#{params[:se_campaign_id]}/web_pages/#{params[:se_web_page_id]}",
+        'se_email'           => "/workspaces/#{params[:workspace_id]}/campaigns/#{params[:se_campaign_id]}/emails/#{params[:se_email_id]}",
+        'se_email_opening'   => "/workspaces/#{params[:workspace_id]}/campaigns/#{params[:se_campaign_id]}/email_openings/#{params[:se_email_opening_id]}",
+        'se_phishing_result' => "/workspaces/#{params[:workspace_id]}/campaigns/#{params[:se_campaign_id]}/phishing_results/#{params[:se_phishing_result_id]}",
+        'se_visit'           => "/workspaces/#{params[:workspace_id]}/campaigns/#{params[:se_campaign_id]}/visits/#{params[:se_visit_id]}",
       },
     }
   end

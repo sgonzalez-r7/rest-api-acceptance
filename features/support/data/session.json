@@ -1,8 +1,8 @@
 [
   {
     "campaign_id": null,
-    "close_reason": null,
-    "closed_at": null,
+    "close_reason": "Orphaned",
+    "closed_at": "2015-01-23T21:59:12Z",
     "datastore": {
     },
     "desc": null,
@@ -10,7 +10,7 @@
     "id": 1,
     "last_seen": null,
     "local_id": null,
-    "opened_at": "2015-01-20T18:47:18Z",
+    "opened_at": "2015-01-23T21:59:12Z",
     "platform": null,
     "port": null,
     "stype": null,
@@ -19,8 +19,8 @@
   },
   {
     "campaign_id": null,
-    "close_reason": null,
-    "closed_at": null,
+    "close_reason": "Orphaned",
+    "closed_at": "2015-01-23T21:59:13Z",
     "datastore": {
     },
     "desc": null,
@@ -28,7 +28,7 @@
     "id": 2,
     "last_seen": null,
     "local_id": null,
-    "opened_at": "2015-01-20T18:47:19Z",
+    "opened_at": "2015-01-23T21:59:12Z",
     "platform": null,
     "port": null,
     "stype": null,
@@ -37,8 +37,8 @@
   },
   {
     "campaign_id": null,
-    "close_reason": null,
-    "closed_at": null,
+    "close_reason": "Orphaned",
+    "closed_at": "2015-01-23T21:59:13Z",
     "datastore": {
     },
     "desc": null,
@@ -46,7 +46,7 @@
     "id": 3,
     "last_seen": null,
     "local_id": null,
-    "opened_at": "2015-01-20T18:47:19Z",
+    "opened_at": "2015-01-23T21:59:12Z",
     "platform": null,
     "port": null,
     "stype": null,

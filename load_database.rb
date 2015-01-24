@@ -161,10 +161,10 @@ se_visit           = FactoryGirl.create :social_engineering_visit,
 
 
 # Populate data for single objects
-data['key']                << key
-data['workspace']          << workspace
-data['host']               << host
-data['session']            << session
+data['key']                << ::Mdm::ApiKey.where(id: [key.id]).first
+data['workspace']          << ::Mdm::Workspace.where(id: [workspace.id]).first
+data['host']               << ::Mdm::Host.where(id: [host.id]).first
+data['session']            << ::Mdm::Session.where(id: [session.id]).first
 data['service']            << service
 data['note']               << note
 data['vuln']               << vuln
@@ -263,9 +263,9 @@ se_visits           = FactoryGirl.create_list :social_engineering_visit, 2,
                                               human_target_id: se_human_target.id
 
 # Populate data for collections
-data['workspace']          += workspaces
-data['host']               += hosts
-data['session']            += sessions
+data['workspace']          += ::Mdm::Workspace.where(id: workspaces.map(&:id))
+data['host']               += ::Mdm::Host.where(id: hosts.map(&:id))
+data['session']            += ::Mdm::Session.where(id: sessions.map(&:id))
 data['service']            += services
 data['note']               += notes
 data['vuln']               += vulns
@@ -493,9 +493,13 @@ data.each_key do |model|
               JSON.pretty_generate(JSON.parse data[model].to_json) )
 end
 
-other_data.each_key do |model|
-  File.write( "#{data_dir}/" + "#{model}_other" + '.json',
-              JSON.pretty_generate(JSON.parse other_data[model].to_json) )
-end
+# other_data.each_key do |model|
+#   File.write( "#{data_dir}/" + "#{model}_other" + '.json',
+#               JSON.pretty_generate(JSON.parse other_data[model].to_json) )
+# end
 
 
+# ap ::Mdm::Session.where(id: session.id).first
+# ap ::Mdm::Session.where(id: session.id).first
+
+ap data['session']

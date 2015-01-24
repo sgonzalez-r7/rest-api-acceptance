@@ -1,31 +1,31 @@
 [
   {
-    "created_at": "2015-01-20T18:47:19Z",
+    "created_at": "2015-01-23T21:59:12Z",
     "email_address": "foobarrio1@sid-n-nancy.net",
     "first_name": "Name14",
     "id": 4,
     "last_name": "Name15",
-    "updated_at": "2015-01-20T18:47:19Z",
+    "updated_at": "2015-01-23T21:59:12Z",
     "user_id": 1,
     "workspace_id": 2
   },
   {
-    "created_at": "2015-01-20T18:47:19Z",
+    "created_at": "2015-01-23T21:59:13Z",
     "email_address": "foobarrio2@sid-n-nancy.net",
     "first_name": "Name38",
     "id": 5,
     "last_name": "Name39",
-    "updated_at": "2015-01-20T18:47:19Z",
+    "updated_at": "2015-01-23T21:59:13Z",
     "user_id": 1,
     "workspace_id": 2
   },
   {
-    "created_at": "2015-01-20T18:47:19Z",
+    "created_at": "2015-01-23T21:59:13Z",
     "email_address": "foobarrio3@sid-n-nancy.net",
     "first_name": "Name40",
     "id": 6,
     "last_name": "Name41",
-    "updated_at": "2015-01-20T18:47:19Z",
+    "updated_at": "2015-01-23T21:59:13Z",
     "user_id": 1,
     "workspace_id": 2
   }

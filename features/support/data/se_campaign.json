@@ -1,7 +1,7 @@
 [
   {
     "config_type": "wizard",
-    "created_at": "2015-01-20T18:47:19Z",
+    "created_at": "2015-01-23T21:59:12Z",
     "id": 1,
     "last_target_interaction_at": null,
     "name": "Name3",
@@ -25,13 +25,13 @@
     "started_at": null,
     "started_by_user_id": 1,
     "state": "launchable",
-    "updated_at": "2015-01-20T18:47:19Z",
+    "updated_at": "2015-01-23T21:59:12Z",
     "user_id": 1,
     "workspace_id": 2
   },
   {
     "config_type": "wizard",
-    "created_at": "2015-01-20T18:47:19Z",
+    "created_at": "2015-01-23T21:59:12Z",
     "id": 2,
     "last_target_interaction_at": null,
     "name": "Name16",
@@ -55,13 +55,13 @@
     "started_at": null,
     "started_by_user_id": 1,
     "state": "launchable",
-    "updated_at": "2015-01-20T18:47:19Z",
+    "updated_at": "2015-01-23T21:59:12Z",
     "user_id": 1,
     "workspace_id": 2
   },
   {
     "config_type": "wizard",
-    "created_at": "2015-01-20T18:47:19Z",
+    "created_at": "2015-01-23T21:59:12Z",
     "id": 3,
     "last_target_interaction_at": null,
     "name": "Name21",
@@ -85,7 +85,7 @@
     "started_at": null,
     "started_by_user_id": 1,
     "state": "launchable",
-    "updated_at": "2015-01-20T18:47:19Z",
+    "updated_at": "2015-01-23T21:59:13Z",
     "user_id": 1,
     "workspace_id": 2
   }

@@ -11,6 +11,15 @@ describe Client do
     end
   end
 
+  describe '#last_response' do
+    it 'returns the last response from rest api' do
+      client = Client.new rest_api: RestApi
+      expect(client).to receive(:generate_path_for).and_return('/base')
+      response = client.make_get_request(:index, 'workspaces')
+      expect(client.last_response).to eql response
+    end
+  end
+
   describe '#generate_path_for' do
     it 'generates the index path for workspaces' do
       client = Client.new rest_api: RestApi
@@ -25,17 +34,16 @@ describe Client do
     context 'order of params: :id, :workspace_id' do
       it 'generates the show path for hosts' do
         client = Client.new rest_api: RestApi
-        expect(client.generate_path_for(:show, 'host', id: 21, workspace_id: 42)).to eql '/workspaces/42/hosts/21'
+        expect(client.generate_path_for(:show, 'host', host_id: 21, workspace_id: 42)).to eql '/workspaces/42/hosts/21'
       end
     end
 
     context 'order of params: :workspace_id, :id' do
       it 'generates the show path for hosts' do
         client = Client.new rest_api: RestApi
-        expect(client.generate_path_for(:show, 'host', workspace_id: 42, id: 21)).to eql '/workspaces/42/hosts/21'
+        expect(client.generate_path_for(:show, 'host', workspace_id: 42, host_id: 21)).to eql '/workspaces/42/hosts/21'
       end
     end
   end
-
 end
 end
