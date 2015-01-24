@@ -32,8 +32,6 @@ And(/^it returns all sessions for the host$/) do
   expect(JSON.parse client.last_response).to eql database.fetch_data_for('sessions')
 end
 
-
-
 When(/^the client makes a GET\#show request$/) do
   client.make_get_request :show, 'session', params
 end
