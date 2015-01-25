@@ -1,1 +1,2 @@
-features/data/*.json
+features/support/data/*.json
+spec/support/data/*.json
