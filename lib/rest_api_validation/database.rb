@@ -12,29 +12,24 @@ class  Database
   end
 
   def fetch_data_for(model, params={})
-    model_name = normalize_model_name(model)
+    all_data = all_data_for(model)
+
     if params.empty?
-      results = data[model_name]
+      results = all_data
     else
       param, value = params.shift
-      results      = data[model_name].select { |e| e[param.to_s] == value }
+      results      = all_data.select { |e| e[param.to_s] == value }
     end
+
     results
   end
 
-  def fetch_ids_for(model)
-    Set.new fetch_data_for(model).map { |e| e['id'] }
+  def fetch_ids_for(model, params={})
+    Set.new fetch_data_for(model, params).map { |e| e['id'] }
   end
 
   def fetch_a(model, params={})
-    model_name = normalize_model_name(model)
-    if params.empty?
-      result = data[model_name]
-    else
-      param, value = params.shift
-      result = data[model_name].select { |e| e[param.to_s] == value }
-    end
-    result.first
+    fetch_data_for(model, params).first
   end
 
   def data
@@ -55,6 +50,12 @@ class  Database
 
   def normalize_model_name(model)
     model.to_s.singularize.to_sym
+  end
+
+  def all_data_for(model)
+    model_name       = normalize_model_name(model)
+    model_name_other = normalize_model_name(model_name.to_s + '_other')
+    data[model_name] + data[model_name_other]
   end
 
 end

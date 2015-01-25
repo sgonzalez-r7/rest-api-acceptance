@@ -5,8 +5,13 @@ describe Database do
   let(:test_data_dir) { File.dirname(__FILE__) + '/../support/data' }
   let(:database)      { Database.new data_dir: test_data_dir }
 
-  def load_data(file)
-    JSON.parse File.read("#{test_data_dir}/#{file}")
+  def load_data(resource)
+    resource_name = resource.to_s.singularize
+    file          = "#{test_data_dir}/#{resource_name}.json"
+    other_file    = "#{test_data_dir}/#{resource_name}_other.json"
+    data          = JSON.parse File.read(file)
+    other_data    = JSON.parse File.read(other_file)
+    (data + other_data).ostructify
   end
 
   def to_ids(data)
@@ -14,36 +19,44 @@ describe Database do
   end
 
   describe '#fetch_data_for' do
-    it 'fetches all data for a model' do
-      ids      = database.fetch_ids_for(:hosts)
-      data     = load_data('host.json').ostructify
+    it 'returns a set of all data for a model' do
+      hosts    = database.fetch_data_for(:hosts)
+      host_ids = to_ids(hosts)
+      data     = load_data(:hosts)
       data_ids = to_ids(data)
-      expect(ids).to eql data_ids
+
+      expect(host_ids).to eql data_ids
     end
 
-    it 'fetches data with an attribute' do
-      host = database.fetch_data_for(:hosts, id: 2).first
-      expect(host.id).to eql 2
+    it 'returns data with the given attribute' do
+      hosts = database.fetch_data_for(:hosts, id: 2)
+      host_ids = to_ids(hosts)
+      expect(host_ids).to eql Set.new [2]
     end
   end
 
   describe '#fetch_ids_for' do
-    it 'returns a set of ids for a model' do
+    it 'returns a set of all ids for a model' do
       ids      = database.fetch_ids_for(:hosts)
-      data     = load_data('host.json').ostructify
+      data     = load_data(:hosts)
       data_ids = to_ids(data)
       expect(ids).to eql data_ids
+    end
+
+    it 'returns ids for data with the given attribute' do
+      ids = database.fetch_ids_for(:hosts, id: 2)
+      expect(ids).to eql Set.new [2]
     end
   end
 
   describe '#fetch_a' do
-    it 'returns 1 object of a model' do
+    it 'returns first object of a model' do
       host = database.fetch_a(:host)
-      data = load_data('host.json').ostructify
+      data = load_data(:hosts)
       expect(host).to eql data.first
     end
 
-    it 'returns 1 object of a model with a given param' do
+    it 'returns first object of a model with a given param' do
       workspace = database.fetch_a(:workspace)
       host      = database.fetch_a(:host, workspace_id: workspace.id)
       expect(host.workspace_id).to eql workspace.id

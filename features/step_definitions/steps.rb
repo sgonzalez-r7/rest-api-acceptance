@@ -24,7 +24,7 @@ end
 
 Then(/^it returns all sessions for the host$/) do
   ids = json_to_ids(client.last_response.to_s)
-  expect(ids).to eql database.fetch_ids_for(:sessions)
+  expect(ids).to eql database.fetch_data_for(:sessions, host_id: params[:host_id])
 end
 
 
