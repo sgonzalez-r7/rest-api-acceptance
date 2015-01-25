@@ -28,6 +28,5 @@ describe Database do
       expect(ids).to eql data_ids
     end
   end
-
 end
 end
