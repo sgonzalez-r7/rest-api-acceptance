@@ -9,10 +9,14 @@ Given(/^a (\S+) that has a (\S+)$/) do |parent_name, child_name|
   expect(child["#{parent_name}_id"]).to eql parent.id
 end
 
-Given(/^the host has sessions$/) do
-  host     = database.fetch_a(:host, id: params[:host_id])
-  sessions = database.fetch_data_for(:sessions, host_id: host.id)
-  expect(sessions.count).to be > 0
+Given(/^the host has sessions$/) do |parent_name, child_name|
+  parent   = database.fetch_a(parent_name.to_sym,
+                      id: params["#{parent_name}_id".to_sym])
+
+  children = database.fetch_data_for(child_name.to_sym,
+                      "#{parent}_id".to_sym => parent.id)
+
+  expect(children.count).to be > 0
 end
 
 When(/^the client makes a (GET\#index) request$/) do |arg|
