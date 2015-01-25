@@ -34,6 +34,7 @@ And(/^it returns all sessions for the host$/) do
 end
 
 When(/^the client makes a (GET\#show) request$/) do |arg|
+  ap params
   client.make_get_request :show, 'session', params
 end
 
@@ -64,3 +65,34 @@ Given(/^the host does NOT belong to a workspace$/) do
   id_other = database.fetch_data_for('workspace_other').first['id']
   params[:workspace_id] = id_other
 end
+
+Given(/^a session that does NOT exist$/) do
+  params[:session_id] = 999
+end
+
+Given(/^a host that belongs to a workspace$/) do
+  host = database.fetch_data_for('hosts').first
+  params[:host_id]      = host['id']
+  params[:workspace_id] = host['workspace_id']
+
+  expect(params[:host_id]).to_not       be_nil
+  expect(params[:workspace_id]).to_not  be_nil
+end
+
+Given(/^a session that exists$/) do
+  id = database.fetch_data_for('sessions').first['id']
+  params[:session_id] = id
+end
+
+
+
+
+
+
+
+
+
+
+
+
+

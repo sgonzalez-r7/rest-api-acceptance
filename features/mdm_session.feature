@@ -35,3 +35,33 @@ Feature: Mdm::Session REST API
     When  the client makes a GET#show request
     Then  the status code is 200
     And   it returns the session
+
+  Scenario: GET#show with a session that does NOT exist
+    Given a session that does NOT exist
+    And   a host that belongs to a workspace
+    When  the client makes a GET#show request
+    Then  the status code is 404
+
+  Scenario: GET#show with a host that does NOT exist
+    Given a session that exists
+    And   a host that does NOT exist
+    And   a workspace that exists
+    When  the client makes a GET#show request
+    Then  the status code is 404
+
+  Scenario: GET#show with a workspace that does NOT exist
+    Given a session that belongs to a host
+    And   a workspace that does NOT exist
+    When  the client makes a GET#show request
+    Then  the status code is 404
+
+
+
+
+
+
+
+
+
+
+
