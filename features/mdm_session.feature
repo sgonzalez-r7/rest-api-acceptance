@@ -11,17 +11,17 @@ Feature: Mdm::Session REST API
     Then  the status code is 200
     And   it returns all sessions for the host
 
-  # Scenario: GET#index with a host that does NOT exist
-  #   Given a host that does NOT exist
-  #   And   a workspace that exists
-  #   When  the client makes a GET#index request
-  #   Then  the status code is 404
+  Scenario: GET#index with a workspace that does NOT exist
+    Given a workspace that does NOT exist
+    And   a host that has sessions
+    When  the client makes a GET#index request for sessions
+    Then  the status code is 404
 
-  # Scenario: GET#index with a workspace that does NOT exist
-  #   Given a host that exists
-  #   And   a workspace that does NOT exist
-  #   When  the client makes a GET#index request
-  #   Then  the status code is 404
+  Scenario: GET#index with a host that does NOT exist
+    Given a workspace that exists
+    And   a host that does NOT exist
+    When  the client makes a GET#index request for sessions
+    Then  the status code is 404
 
   # Scenario: Get#index with a host that does NOT belong to workspace
   #   Given a host that has sessions

@@ -15,6 +15,8 @@ class  Client
 
     @response = HTTP.with(accept: 'application/json',
                           'Token' => key).get(base_uri + path)
+
+    ap path
   end
 
   def generate_path_for(action, resource, params={})
