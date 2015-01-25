@@ -1,3 +1,7 @@
+require 'set'
+require 'json'
+require 'active_support/core_ext/string'
+
 module RestApiValidation
 class  Database
   attr_reader :data_dir, :data
