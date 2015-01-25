@@ -2,10 +2,10 @@ Given(/^a workspace that has a host$/) do
   workspace = database.fetch_a(:workspace)
   host      = database.fetch_a(:host, workspace_id: workspace.id)
 
-  expect(host.workspace_id).to eql workspace.id
-
   params[:workspace_id] = workspace.id
   params[:host_id]      = host.id
+
+  expect(host.workspace_id).to eql workspace.id
 end
 
 Given(/^the host has sessions$/) do
@@ -23,8 +23,9 @@ Then(/^the status code is (#{AN_INTEGER})$/) do |code|
 end
 
 Then(/^it returns all sessions for the host$/) do
-  ids = json_to_ids(client.last_response.to_s)
-  expect(ids).to eql database.fetch_data_for(:sessions, host_id: params[:host_id])
+  ids      = json_to_ids(client.last_response.to_s)
+  data_ids = database.fetch_ids_for(:sessions, host_id: params[:host_id])
+  expect(ids).to eql data_ids
 end
 
 
