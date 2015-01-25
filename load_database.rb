@@ -344,4 +344,5 @@ def write_data(data_dir)
   @other_data.each_key do |model|
     File.write( "#{data_dir}/" + "#{model}_other" + '.json',
                 JSON.pretty_generate(JSON.parse @other_data[model].to_json) )
+  end
 end
