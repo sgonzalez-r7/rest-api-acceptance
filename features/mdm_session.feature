@@ -25,7 +25,7 @@ Feature: Mdm::Session REST API
 
   Scenario: Get#index with a host that does NOT belong to workspace
     Given a host that has sessions
-    And   a host that does NOT belong to a workspace
+    And   the host does NOT belong to a workspace
     When  the client makes a GET#index request
     Then  the status code is 404
 

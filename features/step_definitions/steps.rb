@@ -60,4 +60,7 @@ Given(/^a workspace that does NOT exist$/) do
   params[:workspace_id] = 999
 end
 
-
+Given(/^the host does NOT belong to a workspace$/) do
+  id_other = database.fetch_data_for('workspace_other').first['id']
+  params[:workspace_id] = id_other
+end
