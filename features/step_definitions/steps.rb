@@ -1,7 +1,8 @@
 Given(/^a (\S+) that has a (\S+)$/) do |parent_name, child_name|
   parent = database.fetch_a(parent_name.to_sym)
   child  = database.fetch_a(child_name.to_sym,
-                            "#{parent_name}_id".to_sym => parent.id)
+                            "#{parent_name}_id".to_sym =>
+                              parent.id)
 
   params["#{parent_name}_id".to_sym] = parent.id
   params["#{child_name}_id".to_sym]  = child.id
@@ -14,7 +15,8 @@ Given(/^the (\S+) has (\S+)$/) do |parent_name, child_name|
                               id: params["#{parent_name}_id".to_sym])
 
   children = database.fetch_data_for(child_name.to_sym,
-                                     "#{parent_name}_id".to_sym => parent.id)
+                                     "#{parent_name}_id".to_sym =>
+                                       parent.id)
 
   expect(children.count).to be > 0
 end
@@ -27,9 +29,11 @@ Then(/^the status code is (#{AN_INTEGER})$/) do |code|
   expect(client.last_response.code).to eql code
 end
 
-Then(/^it returns all sessions for the host$/) do
+Then(/^it returns all (\S+) for the (\S+)$/) do |child_name, parent_name|
   ids      = json_to_ids(client.last_response.to_s)
-  data_ids = database.fetch_ids_for(:sessions, host_id: params[:host_id])
+  data_ids = database.fetch_ids_for(child_name.to_sym,
+                                    "#{parent_name}_id".to_sym =>
+                                      params["#{parent_name}_id".to_sym])
   expect(ids).to eql data_ids
 end
 
