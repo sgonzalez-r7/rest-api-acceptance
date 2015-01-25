@@ -29,7 +29,8 @@ Then(/^the status code is (#{AN_INTEGER})$/) do |code|
 end
 
 And(/^it returns all sessions for the host$/) do
-  expect(JSON.parse client.last_response).to eql database.fetch_data_for('sessions')
+  ids = Set.new JSON.parse(client.last_response.to_s).map{ |e| e['id'] }
+  expect(ids).to eql database.fetch_ids_for('sessions')
 end
 
 When(/^the client makes a GET\#show request$/) do
@@ -37,7 +38,8 @@ When(/^the client makes a GET\#show request$/) do
 end
 
 Then(/^it returns the session$/) do
-  expect(JSON.parse client.last_response).to eql database.fetch_data_for('session', id: params[:session_id]).first
+  id = JSON.parse(client.last_response.to_s)['id']
+  expect(id).to eql params[:session_id]
 end
 
 
