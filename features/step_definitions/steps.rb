@@ -84,7 +84,10 @@ Given(/^a session that exists$/) do
   params[:session_id] = id
 end
 
-
+Given(/^a session that does NOT belong to a host$/) do
+  id = database.fetch_data_for('session_other').first['id']
+  params[:session_id] = id
+end
 
 
 

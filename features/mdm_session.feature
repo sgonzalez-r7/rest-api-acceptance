@@ -55,9 +55,17 @@ Feature: Mdm::Session REST API
     When  the client makes a GET#show request
     Then  the status code is 404
 
+  Scenario: GET#show with a session that does NOT belong to the host
+    Given a session that does NOT belong to a host
+    And   a host that belongs to a workspace
+    When  the client makes a GET#show request
+    Then  the status code is 404
 
-
-
+  Scenario: GET#show with a host that does NOT belong to the workspace
+    Given a session that belongs to a host
+    And   the host does NOT belong to a workspace
+    When  the client makes a GET#show request
+    Then  the status code is 404
 
 
 
