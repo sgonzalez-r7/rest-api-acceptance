@@ -32,6 +32,12 @@ class  Database
     fetch_data_for(model, params).first
   end
 
+  def fetch_an_other(model)
+    model_name       = normalize_model_name(model)
+    model_name_other = normalize_model_name(model_name.to_s + '_other')
+    data[model_name_other].first
+  end
+
   def data
     @data ||= read_data
   end
