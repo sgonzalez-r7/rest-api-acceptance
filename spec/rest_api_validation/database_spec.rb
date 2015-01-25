@@ -19,5 +19,15 @@ describe Database do
     end
   end
 
+  describe '#fetch_ids_for' do
+    it 'returns a set of ids for a model' do
+      database = Database.new data_dir: test_data_dir
+      ids      = database.fetch_ids_for('hosts')
+      data     = JSON.parse File.read("#{test_data_dir}/host.json")
+      data_ids = Set.new data.map { |e| e['id'] }
+      expect(ids).to eql data_ids
+    end
+  end
+
 end
 end

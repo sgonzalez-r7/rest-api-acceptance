@@ -21,6 +21,10 @@ class  Database
     results
   end
 
+  def fetch_ids_for(model)
+    Set.new fetch_data_for(model).map { |e| e['id'] }
+  end
+
   def data
     @data ||= read_data
   end
