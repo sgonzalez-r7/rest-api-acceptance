@@ -23,6 +23,12 @@ Feature: Mdm::Session REST API
     When  the client makes a GET#index request
     Then  the status code is 404
 
+  Scenario: Get#index with a host that does NOT belong to workspace
+    Given a host that has sessions
+    And   a host that does NOT belong to a workspace
+    When  the client makes a GET#index request
+    Then  the status code is 404
+
   Scenario: Valid GET#show
     Given a session that belongs to a host
     And   the host belongs to a workspace
