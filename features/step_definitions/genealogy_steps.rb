@@ -46,6 +46,6 @@ end
 # a resource that exists
 #
 Given(/^a (\S+) that exists$/) do |resource_name|
-  resource = database.fetch_a(resource_name.to_sym)
+  resource                     = database.fetch_a(resource_name.to_sym)
   params[resource_name.to_sym] = resource.id
 end
