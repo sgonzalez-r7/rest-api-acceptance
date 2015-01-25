@@ -7,7 +7,7 @@ Feature: Mdm::Session REST API
   Scenario: Valid GET#index
     Given a workspace that has a host
     And   the host has sessions
-    When  the client makes a GET#index request
+    When  the client makes a GET#index request for sessions
     Then  the status code is 200
     And   it returns all sessions for the host
 

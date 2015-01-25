@@ -19,8 +19,8 @@ Given(/^the (\S+) has (\S+)$/) do |parent_name, child_name|
   expect(children.count).to be > 0
 end
 
-When(/^the client makes a (GET\#index) request$/) do |arg|
-  client.make_get_request :index, :sessions, params
+When(/^the client makes a (GET\#index) request for (\S+)$/) do |arg, resource|
+  client.make_get_request :index, resource.to_sym, params
 end
 
 Then(/^the status code is (#{AN_INTEGER})$/) do |code|
