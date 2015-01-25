@@ -42,10 +42,22 @@ Then(/^it returns the session$/) do
   expect(id).to eql params[:session_id]
 end
 
+Given(/^a host that does NOT exist$/) do
+  params[:host_id] = 999
+end
 
+Given(/^a workspace that exists$/) do
+  id = database.fetch_data_for('workspaces').first['id']
+  params[:workspace_id] = id
+end
 
+Given(/^a host that exists$/) do
+  id = database.fetch_data_for('hosts').first['id']
+  params[:host_id] = id
+end
 
-
-
+Given(/^a workspace that does NOT exist$/) do
+  params[:workspace_id] = 999
+end
 
 
