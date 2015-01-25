@@ -25,6 +25,10 @@ class  Database
     Set.new fetch_data_for(model).map { |e| e['id'] }
   end
 
+  def fetch_a(model)
+    data[model.to_s].first
+  end
+
   def data
     @data ||= read_data
   end

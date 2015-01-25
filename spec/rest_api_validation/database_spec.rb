@@ -28,5 +28,14 @@ describe Database do
       expect(ids).to eql data_ids
     end
   end
+
+  describe '#fetch_a' do
+    it 'returns 1 object of a model' do
+      database = Database.new data_dir: test_data_dir
+      host     = database.fetch_a(:host)
+      data     = JSON.parse File.read("#{test_data_dir}/host.json")
+      expect(host).to eql data.first
+    end
+  end
 end
 end
