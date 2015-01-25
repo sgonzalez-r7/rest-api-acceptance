@@ -20,7 +20,7 @@ Given(/^the host belongs to a workspace$/) do
   expect(params[:workspace_id]).to_not be_nil
 end
 
-When(/^the client makes a GET\#index request$/) do
+When(/^the client makes a (GET\#index) request$/) do |arg|
   client.make_get_request :index, 'sessions', params
 end
 
@@ -33,7 +33,7 @@ And(/^it returns all sessions for the host$/) do
   expect(ids).to eql database.fetch_ids_for('sessions')
 end
 
-When(/^the client makes a GET\#show request$/) do
+When(/^the client makes a (GET\#show) request$/) do |arg|
   client.make_get_request :show, 'session', params
 end
 
