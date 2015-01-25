@@ -1,6 +1,6 @@
 Given(/^a workspace that has a host$/) do
   workspace = database.fetch_a(:workspace)
-  hosts     = database.fetch_data_for('hosts', workspace_id: workspace['id'])
+  hosts     = database.fetch_a('host', workspace_id: workspace['id'])
   expect(hosts.count).to be > 0
 end
 

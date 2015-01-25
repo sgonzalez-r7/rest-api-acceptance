@@ -25,8 +25,16 @@ class  Database
     Set.new fetch_data_for(model).map { |e| e['id'] }
   end
 
-  def fetch_a(model)
-    data[model.to_s].first
+  def fetch_a(model, params={})
+    # TODO normalize model name: singular, string
+    model_name = model.to_s
+    if params.empty?
+      result = data[model.to_s]
+    else
+      param, value = params.shift
+      result = data[model_name].select { |e| e[param.to_s] == value }
+    end
+    result.first
   end
 
   def data

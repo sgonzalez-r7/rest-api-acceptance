@@ -36,6 +36,14 @@ describe Database do
       data     = JSON.parse File.read("#{test_data_dir}/host.json")
       expect(host).to eql data.first
     end
+
+    it 'returns 1 object of a model with a given param' do
+      database  = Database.new data_dir: test_data_dir
+      workspace = database.fetch_a(:workspace)
+      host      = database.fetch_a(:host, workspace_id: workspace['id'])
+      expect(host['workspace_id']).to eql workspace['id']
+    end
+
   end
 end
 end
