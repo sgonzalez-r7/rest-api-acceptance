@@ -1,5 +1,6 @@
 require 'set'
 require 'json'
+require 'ostructify'
 require 'active_support/core_ext/string'
 
 module RestApiValidation
@@ -11,7 +12,7 @@ class  Database
   end
 
   def fetch_data_for(model, params={})
-    model_name = model.singularize
+    model_name = normalize_model_name(model)
     if params.empty?
       results = data[model_name]
     else
@@ -26,10 +27,9 @@ class  Database
   end
 
   def fetch_a(model, params={})
-    # TODO normalize model name: singular, string
-    model_name = model.to_s
+    model_name = normalize_model_name(model)
     if params.empty?
-      result = data[model.to_s]
+      result = data[model_name]
     else
       param, value = params.shift
       result = data[model_name].select { |e| e[param.to_s] == value }
@@ -48,9 +48,13 @@ class  Database
     files = Dir["#{data_dir}/*.json"]
     files.each do |file|
       model =File.basename(file, '.json')
-      data[model] = JSON.parse File.read(file)
+      data[model.to_sym] = JSON.parse(File.read(file)).ostructify
     end
     data
+  end
+
+  def normalize_model_name(model)
+    model.to_s.singularize.to_sym
   end
 
 end

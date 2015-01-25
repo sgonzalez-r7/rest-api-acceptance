@@ -1,19 +1,34 @@
+def json_to_ids(data)
+  Set.new JSON.parse(data).map { |e| e['id'] }
+end
+
 Given(/^a workspace that has a host$/) do
   workspace = database.fetch_a(:workspace)
-  hosts     = database.fetch_a('host', workspace_id: workspace['id'])
-  expect(hosts.count).to be > 0
+  host      = database.fetch_a(:host, workspace_id: workspace.id)
+
+  expect(host.workspace_id).to eql workspace.id
+
+  params[:workspace_id] = workspace.id
+  params[:host_id]      = host.id
 end
 
 Given(/^the host has sessions$/) do
+  host     = database.fetch_a(:host, id: params[:host_id])
+  sessions = database.fetch_data_for(:sessions, host_id: host.id)
+  expect(sessions.count).to be > 0
 end
 
-When(/^the client makes a GET\#index request$/) do
+When(/^the client makes a (GET\#index) request$/) do |arg|
+  client.make_get_request :index, :sessions, params
 end
 
 Then(/^the status code is (#{AN_INTEGER})$/) do |code|
+  expect(client.last_response.code).to eql code
 end
 
 Then(/^it returns all sessions for the host$/) do
+  ids = json_to_ids(client.last_response.to_s)
+  expect(ids).to eql database.fetch_ids_for(:sessions)
 end
 
 
