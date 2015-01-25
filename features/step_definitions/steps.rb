@@ -1,7 +1,3 @@
-def json_to_ids(data)
-  Set.new JSON.parse(data).map { |e| e['id'] }
-end
-
 Given(/^a workspace that has a host$/) do
   workspace = database.fetch_a(:workspace)
   host      = database.fetch_a(:host, workspace_id: workspace.id)
