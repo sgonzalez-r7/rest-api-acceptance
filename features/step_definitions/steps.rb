@@ -1,11 +1,12 @@
-Given(/^a workspace that has a host$/) do
-  workspace = database.fetch_a(:workspace)
-  host      = database.fetch_a(:host, workspace_id: workspace.id)
+Given(/^a (\S+) that has a (\S+)$/) do |parent_name, child_name|
+  parent = database.fetch_a(parent_name.to_sym)
+  child  = database.fetch_a(child_name.to_sym,
+                    "#{parent_name}_id".to_sym => parent.id)
 
-  params[:workspace_id] = workspace.id
-  params[:host_id]      = host.id
+  params["#{parent}_id".to_sym] = parent.id
+  params["#{child}_id".to_sym]  = child.id
 
-  expect(host.workspace_id).to eql workspace.id
+  expect(child["#{parent_name}_id"]).to eql parent.id
 end
 
 Given(/^the host has sessions$/) do
