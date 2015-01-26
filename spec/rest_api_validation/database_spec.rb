@@ -5,31 +5,25 @@ describe Database do
   let(:test_data_dir) { File.dirname(__FILE__) + '/../support/data' }
   let(:database)      { Database.new data_dir: test_data_dir }
 
-  def load_data(resource)
-    resource_name = resource.to_s.singularize
-    file          = "#{test_data_dir}/#{resource_name}.json"
-    other_file    = "#{test_data_dir}/#{resource_name}_other.json"
-    data          = JSON.parse File.read(file)
-    other_data    = JSON.parse File.read(other_file)
-    (data + other_data).ostructify
-  end
-
-  def to_ids(data)
-    Set.new data.map { |e| e.id }
-  end
-
   describe '#fetch_data_for' do
-    it 'returns a set of all data for a model' do
-      hosts    = database.fetch_data_for(:hosts)
-      host_ids = to_ids(hosts)
-      data     = load_data(:hosts)
-      data_ids = to_ids(data)
+    # n objects returned should eql n database
+    # all objects should be of type model
 
-      expect(host_ids).to eql data_ids
+    it 'returns same number of objects as the database has' do
+      hosts          = database.fetch_data_for(:hosts)
+      database_count = load_data(:hosts).count
+      expect(hosts.count).to eql database_count
+    end
+
+    it 'returns all objects of type model (including other)' do
+      hosts       = database.fetch_data_for(:hosts)
+      types       = hosts.map { |obj| obj.model }
+      wrong_types = types.reject { |type| type =~ /host/ }
+      expect(wrong_types).to be_empty
     end
 
     it 'returns data with the given attribute' do
-      hosts = database.fetch_data_for(:hosts, id: 2)
+      hosts    = database.fetch_data_for(:hosts, id: 2)
       host_ids = to_ids(hosts)
       expect(host_ids).to eql Set.new [2]
     end
@@ -52,8 +46,7 @@ describe Database do
   describe '#fetch_a' do
     it 'returns first object of a model' do
       host = database.fetch_a(:host)
-      data = load_data(:hosts)
-      expect(host).to eql data.first
+      expect(host.model).to eql 'host'
     end
 
     it 'returns first object of a model with a given param' do
