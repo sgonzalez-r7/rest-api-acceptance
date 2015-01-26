@@ -9,12 +9,12 @@ end
 # it returns all children for the parent
 #
 Then(/^it returns all (\S+) for the (\S+)$/) do |child_name, parent_name|
-  ids      = json_to_ids(client.last_response.to_s)
+  ids      = Set.new json_to_ids(client.last_response.to_s)
 
   data_ids = database.fetch_ids_for(child_name.to_sym,
                                     "#{parent_name}_id".to_sym =>
                                       params["#{parent_name}_id".to_sym])
-  expect(ids).to eql data_ids
+  expect(ids).to eql Set.new data_ids
 end
 
 #
