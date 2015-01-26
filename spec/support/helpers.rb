@@ -1,4 +1,4 @@
-def to_ids(data)
+def to_set_of_ids(data)
   Set.new data.map { |e| e.id }
 end
 

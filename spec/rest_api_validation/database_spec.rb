@@ -6,9 +6,6 @@ describe Database do
   let(:database)      { Database.new data_dir: test_data_dir }
 
   describe '#fetch_data_for' do
-    # n objects returned should eql n database
-    # all objects should be of type model
-
     it 'returns same number of objects as the database has' do
       hosts          = database.fetch_data_for(:hosts)
       database_count = load_data(:hosts).count
@@ -22,10 +19,11 @@ describe Database do
       expect(wrong_types).to be_empty
     end
 
-    it 'returns data with the given attribute' do
-      hosts    = database.fetch_data_for(:hosts, id: 2)
-      host_ids = to_ids(hosts)
-      expect(host_ids).to eql Set.new [2]
+    it 'returns all objects with the given attribute' do
+      hosts      = database.fetch_data_for(:hosts, id: 2)
+      attributes = hosts.map { |obj| obj.id  }
+      wrong_attributes = attributes.reject { |a| attribute = 2 }
+      expect(wrong_attributes).to be_empty
     end
   end
 
