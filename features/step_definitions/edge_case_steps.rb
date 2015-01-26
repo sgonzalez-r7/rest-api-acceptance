@@ -15,5 +15,5 @@ Given(/^a (\S+) that does (NOT) belong to a (\S+)$/) do |child_name, arg, parent
   params["#{parent_name}_id".to_sym] = parent.id
   params["#{child_name}_id".to_sym]  = child_other.id
 
-  expect(child_other['workspace_id']).to_not eql parent.id
+  expect(child_other["#{parent_name}_id"]).to_not eql parent.id
 end
