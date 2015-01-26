@@ -8,13 +8,13 @@ end
 #
 # a child that does NOT belong to a parent
 #
-Given(/^a host that does NOT belong to a workspace$/) do
-  workspace   = database.fetch_a(:workspace)
+Given(/^a (\S+) that does (NOT) belong to a (\S+)$/) do |child_name, arg, parent_name|
+  parent   = database.fetch_a("#{parent_name}".to_sym)
 
-  host_other  = database.fetch_an_other(:host)
+  child_other  = database.fetch_an_other("#{child_name}".to_sym)
 
-  params[:workspace_id] = workspace.id
-  params[:host_id]      = host_other.id
+  params["#{parent_name}_id".to_sym] = parent.id
+  params["#{child_name}_id".to_sym]  = child_other.id
 
-  expect(host_other.workspace_id).to_not eql workspace.id
+  expect(child_other['workspace_id']).to_not eql parent.id
 end
