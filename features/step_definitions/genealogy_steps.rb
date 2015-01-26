@@ -66,13 +66,3 @@ Given(/^a (\S+) that exists$/) do |resource_name|
   params["#{resource_name}_id".to_sym] = resource.id
   expect(resource).to_not be_nil
 end
-
-
-
-
-
-
-
-
-
-

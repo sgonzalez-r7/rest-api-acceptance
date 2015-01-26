@@ -17,3 +17,17 @@ Given(/^a (\S+) that does (NOT) belong to a (\S+)$/) do |child_name, arg, parent
 
   expect(child_other["#{parent_name}_id"]).to_not eql parent.id
 end
+
+#
+# a child that does NOT belong to the parent
+#
+Given(/^a (\S+) that does (NOT) belong to the (\S+)$/) do |child_name, arg, parent_name|
+  parent       = database.fetch_a("#{parent_name}".to_sym,
+                                  id: params["#{parent_name}_id".to_sym])
+
+  child_other  = database.fetch_an_other("#{child_name}".to_sym)
+
+  params["#{child_name}_id".to_sym]  = child_other.id
+
+  expect(child_other["#{parent_name}_id"]).to_not eql parent.id
+end
