@@ -62,5 +62,12 @@ describe Database do
       expect(host.workspace_id).to eql workspace.id
     end
   end
+
+  describe '#fetch_an_other' do
+    it 'returns the first object of other model' do
+      host_other = database.fetch_an_other(:host)
+      expect(host_other.model).to eql 'host_other'
+    end
+  end
 end
 end

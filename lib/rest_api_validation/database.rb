@@ -48,8 +48,12 @@ class  Database
     data = {}
     files = Dir["#{data_dir}/*.json"]
     files.each do |file|
-      model =File.basename(file, '.json')
-      data[model.to_sym] = JSON.parse(File.read(file)).ostructify
+      model = File.basename(file, '.json')
+      json  = JSON.parse File.read(file)
+
+      json.each { |e| e['model'] = model }
+
+      data[model.to_sym] = json.ostructify
     end
     data
   end
