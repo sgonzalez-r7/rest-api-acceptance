@@ -1,7 +1,7 @@
 require 'set'
 require 'json'
-require 'ostructify'
 require 'active_support/core_ext/string'
+require 'array/extensions'
 
 module RestApiValidation
 class  Database
@@ -13,33 +13,6 @@ class  Database
 
   def fetch(model)
     all_data_for(model)
-  end
-
-  def fetch_data_for(model, params={})
-    all_data = all_data_for(model)
-
-    if params.empty?
-      results = all_data
-    else
-      param, value = params.shift
-      results      = all_data.select { |e| e[param.to_s] == value }
-    end
-
-    results
-  end
-
-  def fetch_a(model, params={})
-    fetch_data_for(model, params).first
-  end
-
-  def fetch_an_other(model)
-    model_name       = normalize_model_name(model)
-    model_name_other = normalize_model_name(model_name.to_s + '_other')
-    data[model_name_other].first
-  end
-
-  def fetch_ids_for(model, params={})
-    fetch_data_for(model, params).map { |e| e['id'] }
   end
 
   def data

@@ -8,5 +8,5 @@ def load_data_for(resource)
   other_file    = "#{test_data_dir}/#{resource_name}_other.json"
   data          = JSON.parse File.read(file)
   other_data    = JSON.parse File.read(other_file)
-  (data + other_data).ostructify
+  data + other_data
 end

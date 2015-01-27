@@ -1,16 +1,17 @@
 #
 # the client makes a GET#index request for resource
 #
-When(/^the client makes a (GET\#index) request for (\S+)$/) do |arg, resource_name|
-  client.make_get_request :index, resource_name, params
+When(/^the client makes a (GET\#index) request for (\S+)$/) do |arg, resource|
+  client.make_get_request :index, resource, params
 end
 
 #
 # it returns all children for the parent
 #
 Then(/^it returns all (\S+) for the (\S+)$/) do |child, parent|
-  ids       = Set.new json_to_ids(client.last_response.to_s)
-  data_ids  = Set.new database.fetch_ids_for child, "#{parent}_id" => params["#{parent}_id"]
+  ids      = Set.new json_to_ids(client.last_response.to_s)
+  data     = database.fetch(child).where("#{parent}_id" => params["#{parent}_id"])
+  data_ids = Set.new data.map { |e| e['id'] }
 
   expect(ids).to eql data_ids
 end
@@ -27,7 +28,7 @@ end
 #
 Then(/^it returns the (\S+)$/) do |resource|
   resource_obj = JSON.parse(client.last_response.to_s)
-  data_obj     = database.fetch(resource).where(id: params["#{resource}_id"])
+  data_obj     = database.fetch(resource).where(id: params["#{resource}_id"]).first
 
   expect(resource_obj['id']).to eql data_obj['id']
 end
