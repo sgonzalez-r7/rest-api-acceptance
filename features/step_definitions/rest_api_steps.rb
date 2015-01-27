@@ -3,6 +3,7 @@
 #
 When(/^the client makes a (GET\#index) request for (\S+)$/) do |arg, resource|
   client.make_get_request :index, resource, params
+  ap client.path
 end
 
 #
@@ -21,6 +22,7 @@ end
 #
 When(/^the client makes a (GET\#show) request for (\S+)$/) do |_get_show, resource|
   client.make_get_request :show, resource, params
+  ap client.path
 end
 
 #

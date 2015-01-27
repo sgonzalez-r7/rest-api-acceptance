@@ -2,7 +2,7 @@ require 'http'
 
 module RestApiValidation
 class  Client
-  attr_reader :rest_api
+  attr_reader :rest_api, :path
 
   def initialize(rest_api:)
     @rest_api = rest_api
@@ -11,9 +11,7 @@ class  Client
   def make_get_request(action, resource, params={})
     key      = rest_api.key
     base_uri = rest_api.base_uri
-    path     = generate_path_for(action, resource.to_sym, params)
-
-    ap path
+    @path     = generate_path_for(action, resource.to_sym, params)
 
     @response = HTTP.with(accept: 'application/json',
                           'Token' => key).get(base_uri + path)
