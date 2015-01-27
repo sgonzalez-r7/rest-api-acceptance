@@ -14,15 +14,15 @@ describe Database do
 
     it 'returns all objects of type model (including other)' do
       hosts       = database.fetch_data_for(:hosts)
-      types       = hosts.map { |obj| obj.model }
+      types       = hosts.map { |obj| obj['model'] }
       wrong_types = types.reject { |type| type =~ /host/ }
       expect(wrong_types).to be_empty
     end
 
     it 'returns all objects with the given attribute' do
       hosts      = database.fetch_data_for(:hosts, id: 2)
-      attributes = hosts.map { |obj| obj.id  }
-      wrong_attributes = attributes.reject { |a| attribute = 2 }
+      attributes = hosts.map { |obj| obj['id']  }
+      wrong_attributes = attributes.reject { |a| a == 2 }
       expect(wrong_attributes).to be_empty
     end
   end
@@ -30,19 +30,19 @@ describe Database do
   describe '#fetch_a' do
     it 'returns an object of type model' do
       host = database.fetch_a(:host)
-      expect(host.model).to eql 'host'
+      expect(host['model']).to eql 'host'
     end
 
     it 'returns an object of a model with a given param' do
       host = database.fetch_a(:host, workspace_id: 2)
-      expect(host.workspace_id).to eql 2
+      expect(host['workspace_id']).to eql 2
     end
   end
 
   describe '#fetch_an_other' do
     it 'returns an object of type model_other' do
       host_other = database.fetch_an_other(:host)
-      expect(host_other.model).to eql 'host_other'
+      expect(host_other['model']).to eql 'host_other'
     end
   end
 
@@ -56,7 +56,7 @@ describe Database do
     it 'returns ids for data with the given attribute' do
       ids              = Set.new database.fetch_ids_for(:hosts, workspace_id: 2)
       hosts            = ids.map { |id| database.fetch_a(:host, id: id) }
-      attributes       = hosts.map { |h| h.workspace_id  }
+      attributes       = hosts.map { |h| h['workspace_id']  }
       wrong_attributes = attributes.reject { |a| a == 2 }
       expect(wrong_attributes).to be_empty
     end

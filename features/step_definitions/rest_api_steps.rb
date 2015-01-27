@@ -2,38 +2,34 @@
 # the client makes a GET#index request for resource
 #
 When(/^the client makes a (GET\#index) request for (\S+)$/) do |arg, resource_name|
-  client.make_get_request :index, resource_name.to_sym, params
+  client.make_get_request :index, resource_name, params
 end
 
 #
 # it returns all children for the parent
 #
-Then(/^it returns all (\S+) for the (\S+)$/) do |child_name, parent_name|
-  ids      = Set.new json_to_ids(client.last_response.to_s)
+Then(/^it returns all (\S+) for the (\S+)$/) do |child, parent|
+  ids       = Set.new json_to_ids(client.last_response.to_s)
+  data_ids  = Set.new database.fetch_ids_for child, "#{parent}_id" => params["#{parent}_id"]
 
-  data_ids = database.fetch_ids_for(child_name.to_sym,
-                                    "#{parent_name}_id".to_sym =>
-                                      params["#{parent_name}_id".to_sym])
-  expect(ids).to eql Set.new data_ids
+  expect(ids).to eql data_ids
 end
 
 #
 # the client makes a GET#show request for resource
 #
-When(/^the client makes a (GET\#show) request for (\S+)$/) do |arg, resource_name|
-  client.make_get_request :show, resource_name.to_sym, params
+When(/^the client makes a (GET\#show) request for (\S+)$/) do |_get_show, resource|
+  client.make_get_request :show, resource, params
 end
 
 #
 # it returns the resource
 #
-Then(/^it returns the (\S+)$/) do |resource_name|
-  resource = JSON.parse(client.last_response.to_s).ostructify
+Then(/^it returns the (\S+)$/) do |resource|
+  resource_obj = JSON.parse(client.last_response.to_s)
+  data_obj     = database.fetch_a resource, :id => params["#{resource}_id"]
 
-  data     = database.fetch_a(resource_name.to_sym,
-                              id: params["#{resource_name}_id".to_sym])
-
-  expect(resource.id).to eql data.id
+  expect(resource_obj['id']).to eql data_obj['id']
 end
 
 #

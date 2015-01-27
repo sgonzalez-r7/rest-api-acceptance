@@ -53,7 +53,7 @@ class  Database
 
       json.each { |e| e['model'] = model }
 
-      data[model.to_sym] = json.ostructify
+      data[model.to_sym] = json
     end
     data
   end

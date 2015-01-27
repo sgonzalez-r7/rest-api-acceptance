@@ -1,68 +1,57 @@
 #
 # a parent that has a child
 #
-Given(/^a (\S+) that has a (\S+)$/) do |parent_name, child_name|
-  parent = database.fetch_a(parent_name.to_sym)
+Given(/^a (\S+) that has a (\S+)$/) do |parent, child|
+  parent_obj = database.fetch_a parent
+  child_obj  = database.fetch_a child, "#{parent}_id" => parent_obj['id']
 
-  child  = database.fetch_a(child_name.to_sym,
-                            "#{parent_name}_id".to_sym =>
-                              parent.id)
+  params["#{parent}_id"] = parent_obj['id']
+  params["#{child}_id"]  = child_obj['id']
 
-  params["#{parent_name}_id".to_sym] = parent.id
-  params["#{child_name}_id".to_sym]  = child.id
-
-  expect(child["#{parent_name}_id"]).to eql parent.id
+  expect(child_obj["#{parent}_id"]).to eql parent_obj['id']
 end
 
 #
 # the parent has a child
 #
-Given(/^the (\S+) has a (\S+)$/) do |parent_name, child_name|
-  parent  = database.fetch_a(parent_name.to_sym,
-                               id: params["#{parent_name}_id".to_sym])
+Given(/^the (\S+) has a (\S+)$/) do |parent, child|
+  parent_obj = database.fetch_a parent,           :id  => params["#{parent}_id"]
+  child_obj  = database.fetch_a child,  "#{parent}_id" => parent_obj['id']
 
-  child   = database.fetch_a(child_name.to_sym,
-                             "#{parent_name}_id".to_sym =>
-                               parent.id)
+  params["#{child}_id"] = child_obj['id']
 
-  params["#{child_name}_id".to_sym] = child.id
-
-  expect(child["#{parent_name}_id"]).to eql parent.id
+  expect(child_obj["#{parent}_id"]).to eql parent_obj['id']
 end
 
 #
 # a parent that has children
 #
-Given(/^a (\S+) that has (\S+)$/) do |parent_name, child_name|
-  parent   = database.fetch_a("#{parent_name}".to_sym)
+Given(/^a (\S+) that has (\S+)$/) do |parent, child|
+  parent_obj   = database.fetch_a parent
+  children_obj = database.fetch_data_for child, "#{parent}_id" => parent_obj['id']
 
-  children = database.fetch_data_for("#{child_name}".to_sym,
-                                     "#{parent_name}_id".to_sym =>
-                                       parent.id)
+  params["#{parent}_id"] = parent['id']
 
-  params["#{parent_name}_id".to_sym] = parent.id
-
-  expect(children.count).to be > 0
+  expect(children_obj.count).to be > 0
 end
 
 #
 # the parent has children
 #
-Given(/^the (\S+) has (\S+)$/) do |parent_name, child_name|
-  parent   = database.fetch_a(parent_name.to_sym,
-                              id: params["#{parent_name}_id".to_sym])
+Given(/^the (\S+) has (\S+)$/) do |parent, child|
+  parent_obj   = database.fetch_a parent,                 :id  => params["#{parent}_id"]
+  children_obj = database.fetch_data_for child, "#{parent}_id" => parent_obj['id']
 
-  children = database.fetch_data_for(child_name.to_sym,
-                                     "#{parent_name}_id".to_sym =>
-                                       parent.id)
-  expect(children.count).to be > 0
+  expect(children_obj.count).to be > 0
 end
 
 #
 # a resource that exists
 #
-Given(/^a (\S+) that exists$/) do |resource_name|
-  resource = database.fetch_a(resource_name.to_sym)
-  params["#{resource_name}_id".to_sym] = resource.id
-  expect(resource).to_not be_nil
+Given(/^a (\S+) that exists$/) do |resource|
+  resource_obj = database.fetch_a resource
+
+  params["#{resource}_id"] = resource_obj['id']
+
+  expect(resource_obj).to_not be_nil
 end

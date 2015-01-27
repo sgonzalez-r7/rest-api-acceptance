@@ -11,7 +11,9 @@ class  Client
   def make_get_request(action, resource, params={})
     key      = rest_api.key
     base_uri = rest_api.base_uri
-    path     = generate_path_for(action, resource, params)
+    path     = generate_path_for(action, resource.to_sym, params)
+
+    ap path
 
     @response = HTTP.with(accept: 'application/json',
                           'Token' => key).get(base_uri + path)
@@ -27,7 +29,9 @@ class  Client
 
   private
 
-  def path_template(params={})
+  def path_template(params_with_sym_keys={})
+    params = {}
+    params_with_sym_keys.each_pair { |k,v| params[k.to_sym] = v }
     {
       index: {
         workspaces:  "/workspaces",
