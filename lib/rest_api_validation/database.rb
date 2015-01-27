@@ -11,6 +11,10 @@ class  Database
     @data_dir = data_dir
   end
 
+  def fetch(model)
+    all_data_for(model)
+  end
+
   def fetch_data_for(model, params={})
     all_data = all_data_for(model)
 

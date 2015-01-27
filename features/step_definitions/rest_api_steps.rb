@@ -27,7 +27,7 @@ end
 #
 Then(/^it returns the (\S+)$/) do |resource|
   resource_obj = JSON.parse(client.last_response.to_s)
-  data_obj     = database.fetch_a resource, :id => params["#{resource}_id"]
+  data_obj     = database.fetch(resource).where(id: params["#{resource}_id"])
 
   expect(resource_obj['id']).to eql data_obj['id']
 end

@@ -5,6 +5,43 @@ describe Database do
   let(:test_data_dir) { File.dirname(__FILE__) + '/../support/data' }
   let(:database)      { Database.new data_dir: test_data_dir }
 
+
+  describe '#fetch' do
+    context 'argument is a symbol - plural' do
+      it 'returns same number of objects as the database has' do
+        hosts          = database.fetch(:hosts)
+        hosts_database = load_data_for(:hosts)
+
+        expect(hosts.count).to eql hosts_database.count
+      end
+    end
+
+    context 'argument is a symbol - singular' do
+      it 'returns same number of objects as the database has' do
+        hosts          = database.fetch(:host)
+        hosts_database = load_data_for(:hosts)
+
+        expect(hosts.count).to eql hosts_database.count      end
+    end
+
+    context 'argument is a string - plural' do
+      it 'returns same number of objects as the database has' do
+        hosts          = database.fetch('hosts')
+        hosts_database = load_data_for(:hosts)
+
+        expect(hosts.count).to eql hosts_database.count      end
+    end
+
+    context 'argument is a string - singular' do
+      it 'returns same number of objects as the database has' do
+        hosts          = database.fetch('host')
+        hosts_database = load_data_for(:hosts)
+
+        expect(hosts.count).to eql hosts_database.count      end
+    end
+
+  end
+
   describe '#fetch_data_for' do
     it 'returns same number of objects as the database has' do
       hosts          = database.fetch_data_for(:hosts)
