@@ -1,3 +1,14 @@
+Given(/^a valid api key$/) do
+end
+
+Given(/^an (INVALID) api key$/) do |invalid|
+  RestApiValidation::RestApi.key = 'notavalidkey'
+end
+
+When(/^the client makes a base request$/) do
+  client.make_get_request :index, :workspaces, path: '/base'
+end
+
 #
 # the client makes a GET#index request for resource
 #

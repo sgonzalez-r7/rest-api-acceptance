@@ -1,5 +1,10 @@
 module RestApiValidation
 module RestApi
+
+  def self.key=(key)
+    @key = key
+  end
+
   def self.key
     @key ||= read_key
   end

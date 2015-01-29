@@ -11,7 +11,8 @@ class  Client
   def make_get_request(action, resource, params={})
     key      = rest_api.key
     base_uri = rest_api.base_uri
-    @path     = generate_path_for(action, resource.to_sym, params)
+    @path    = params[:path] || generate_path_for(action, resource, params)
+
 
     @response = HTTP.with(accept: 'application/json',
                           'Token' => key).get(base_uri + path)

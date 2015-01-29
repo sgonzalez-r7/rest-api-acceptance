@@ -11,6 +11,13 @@ describe RestApi do
     end
   end
 
+  describe '.key=' do
+    it 'sets api key' do
+      RestApi.key = 'notavalidkey'
+      expect(RestApi.key).to eql 'notavalidkey'
+    end
+  end
+
   describe '.base_uri' do
     it 'returns its base uri' do
       expect(RestApi.base_uri).to eql 'http://0.0.0.0:5000/rest_api/v2'

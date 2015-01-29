@@ -9,6 +9,13 @@ describe Client do
       response = client.make_get_request(:index, :workspaces)
       expect(response.code).to eql 200
     end
+
+    it 'accepts a path' do
+      client = Client.new rest_api: RestApi
+      response = client.make_get_request(:index, :workspaces, path: '/base')
+      expect(response.code).to eql 200
+    end
+
   end
 
   describe '#last_response' do
