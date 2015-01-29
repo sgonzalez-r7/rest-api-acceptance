@@ -7,6 +7,7 @@ end
 
 When(/^the client makes a base request$/) do
   client.make_get_request :index, :workspaces, path: '/base'
+  RestApiValidation::RestApi.key = nil # make sure to use valid key after this request
 end
 
 #
