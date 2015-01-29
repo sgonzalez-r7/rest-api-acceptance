@@ -26,16 +26,36 @@ require 'builder'
   'se_visit'           =>  [],
 }
 
+Models = [
+  ::Mdm::User,     ::Mdm::Workspace,  ::Mdm::Host,
+  ::Mdm::Session,  ::Mdm::Service,    ::Mdm::Note,
+  ::Mdm::Vuln,     ::Mdm::WebSite,    ::Mdm::WebForm,
+  ::Mdm::WebPage,  ::Mdm::WebVuln,
+
+  ::SocialEngineering::Campaign,     ::SocialEngineering::WebPage,
+  ::SocialEngineering::TargetList,   ::SocialEngineering::EmailTemplate,
+  ::SocialEngineering::Email,        ::SocialEngineering::HumanTarget,
+  ::SocialEngineering::EmailOpening, ::SocialEngineering::PhishingResult,
+  ::SocialEngineering::Visit
+]
+
+Models.each { |model| model.delete_all }
+
+def random_name
+  (1..10).to_a.map{ ('a'..'z').to_a.sample }.join
+end
+
 # Mdm Main Objects
 key       = FactoryGirl.create :api_key
 
 owner     = FactoryGirl.create :mdm_user
 
 workspace = FactoryGirl.create :mdm_workspace,
-                               owner_id: owner.id
+                                name: random_name,
+                                owner_id: nil
 
 host      = FactoryGirl.create :mdm_host,
-                               workspace_id: workspace.id
+                                workspace_id: workspace.id
 
 
 session   = FactoryGirl.create :mdm_session,
