@@ -17,6 +17,14 @@ When(/^the client makes a (GET\#index) request for (\S+)$/) do |arg, resource|
   ap client.path
 end
 
+Then(/^it returns all workspaces$/) do
+  ids      = Set.new json_to_ids(client.last_response.to_s)
+  data     = database.fetch(:workspaces)
+  data_ids = Set.new data.map { |e| e['id'] }
+
+  expect(ids).to eql data_ids
+end
+
 #
 # it returns all children for the parent
 #

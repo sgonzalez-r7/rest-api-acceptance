@@ -13,13 +13,12 @@ class  Client
     base_uri = rest_api.base_uri
     @path    = params[:path] || generate_path_for(action, resource, params)
 
-
     @response = HTTP.with(accept: 'application/json',
                           'Token' => key).get(base_uri + path)
   end
 
   def generate_path_for(action, resource, params={})
-    path_template(params)[action][resource]
+    path_template(params)[action][resource.to_sym]
   end
 
   def last_response
