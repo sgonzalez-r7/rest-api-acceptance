@@ -30,7 +30,7 @@ Given(/^a (\S+) that has (\S+)$/) do |parent, child|
   parent_obj   = database.fetch(parent).first
   children_obj = database.fetch(child).where("#{parent}_id" => parent_obj['id'])
 
-  params["#{parent}_id"] = parent['id']
+  params["#{parent}_id"] = parent_obj['id']
 
   expect(children_obj.count).to be > 0
 end
