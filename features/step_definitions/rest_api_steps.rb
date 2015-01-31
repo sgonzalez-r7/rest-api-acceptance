@@ -41,6 +41,7 @@ end
 # the client makes a GET#show request for resource
 #
 When(/^the client makes a (GET\#show) request for (\S+)$/) do |_get_show, resource|
+  # ap params
   client.make_get_request :show, resource, params
   ap client.path
 end

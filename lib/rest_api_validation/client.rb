@@ -57,7 +57,7 @@ class  Client
         session:    "/workspaces/#{params[:workspace_id]}/hosts/#{params[:host_id]}/sessions/#{params[:session_id]}",
         note:       "/workspaces/#{params[:workspace_id]}/hosts/#{params[:host_id]}/notes/#{params[:note_id]}",
         service:    "/workspaces/#{params[:workspace_id]}/hosts/#{params[:host_id]}/services/#{params[:service_id]}",
-        vuln:       "/workspaces/#{params[:workspace_id]}/hosts/#{params[:host_id]}/services/#{params[:service_id]}/vulns/#{params[:vlun_id]}",
+        vuln:       "/workspaces/#{params[:workspace_id]}/hosts/#{params[:host_id]}/services/#{params[:service_id]}/vulns/#{params[:vuln_id]}",
         web_site:   "/workspaces/#{params[:workspace_id]}/hosts/#{params[:host_id]}/services/#{params[:service_id]}/web_sites/#{params[:web_site_id]}",
         web_form:   "/workspaces/#{params[:workspace_id]}/hosts/#{params[:host_id]}/services/#{params[:service_id]}/web_sites/#{params[:web_site]}/web_forms/#{params[:web_form_id]}",
         web_page:   "/workspaces/#{params[:workspace_id]}/hosts/#{params[:host_id]}/services/#{params[:service_id]}/web_sites/#{params[:web_site]}/web_pages/#{params[:web_page_id]}",
