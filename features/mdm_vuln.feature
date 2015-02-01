@@ -85,7 +85,7 @@ Feature: Mdm::Vuln REST API
   Scenario: GET#show with a service that does NOT belong to a host
     Given a workspace that has a host
     And   a service that does NOT belong to the host
-    And   a vuln that exists
+    And   the service has a vuln
     When  the client makes a GET#show request for vuln
     Then  the status code is 404
 
