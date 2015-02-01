@@ -94,8 +94,7 @@ Feature: Mdm::WebForm REST API
   Scenario: GET#show with a service that does NOT exist
     Given a workspace that has a host
     And   a service that does NOT exist
-    And   a web_site that exists
-    And   the web_site has a web_form
+    And   a web_site that has a web_form
     When  the client makes a GET#show request for web_form
     Then  the status code is 404
 
