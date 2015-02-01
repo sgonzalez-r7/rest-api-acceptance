@@ -15,7 +15,6 @@ Feature: Mdm::Host REST API
 
   Scenario: GET#index with a workspace that does NOT exist
     Given a workspace that does NOT exist
-    And   a host that exists
     When  the client makes a GET#index request for hosts
     Then  the status code is 404
 
