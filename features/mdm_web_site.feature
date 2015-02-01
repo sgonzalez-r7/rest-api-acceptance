@@ -85,7 +85,7 @@ Feature: Mdm::WebSite REST API
   Scenario: GET#show with a service that does NOT belong to a host
     Given a workspace that has a host
     And   a service that does NOT belong to the host
-    And   a web_site that exists
+    And   the service has a web_site
     When  the client makes a GET#show request for web_site
     Then  the status code is 404
 
